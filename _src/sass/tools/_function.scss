@@ -1,0 +1,3 @@
+@function parsent($value, $number) {
+	@return ($value / $number) * 1%;
+}

@@ -1,0 +1,110 @@
+/*doc
+---
+title: table
+name: table
+category: Components CSS
+---
+##table
+```html_example
+<div class="c-tableBorder">
+	<table>
+		<tbody>
+			<tr>
+				<th>項目</th>
+				<td>テキスト</td>
+			</tr>
+			<tr>
+				<th>項目</th>
+				<td>テキスト</td>
+			</tr>
+			<tr>
+				<th>項目</th>
+				<td>テキスト</td>
+			</tr>
+			<tr>
+				<th>項目</th>
+				<td>テキスト</td>
+			</tr>
+			<tr>
+				<th>項目</th>
+				<td>テキスト</td>
+			</tr>
+		</tbody>
+	</table>
+</div>
+```
+
+##table noborder
+
+```html_example
+<div class="c-tableNoBorder">
+	<table>
+		<tbody>
+			<tr class="first">
+				<th>項目</th>
+				<td>テキスト</td>
+			</tr>
+			<tr>
+				<th>項目</th>
+				<td>テキスト</td>
+			</tr>
+			<tr>
+				<th>項目</th>
+				<td>テキスト</td>
+			</tr>
+			<tr>
+				<th>項目</th>
+				<td>テキスト</td>
+			</tr>
+			<tr class="last">
+				<th>項目</th>
+				<td>テキスト</td>
+			</tr>
+		</tbody>
+	</table>
+</div>
+```
+*/
+
+.c-{
+	@at-root {
+		#{&}tableBorder {
+			table {
+				border: 1px solid #ddd;
+				line-height: 1.5;
+			}
+		}
+		#{&}tableNoBorder {
+			table {
+				border: 1px solid #000;
+			}
+			%noTable {
+				padding: 15px 0 30px 30px;
+				border: none;
+				background: #fff;
+			}
+			tr {
+				border: none;
+			}
+			th {
+				@extend %noTable;
+				border-right: 1px solid #000;
+				font-weight: normal;
+				width: 125px;
+			}
+			td {
+				@extend %noTable;
+			}
+			.first {
+				th, td{
+					padding-top: 30px;
+				}
+			}
+			.last {
+				th, td{
+					padding-bottom: 30px;
+				}
+			}
+		}
+	}
+}

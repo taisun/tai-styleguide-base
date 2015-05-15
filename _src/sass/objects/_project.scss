@@ -1,0 +1,170 @@
+.p-itemWrap__mono {
+	position: relative;
+	height: 2400px;
+}
+.p-itemWrap__item {
+	position: relative;
+	height: 800px;
+}
+
+.p-itemLadies{
+	position: absolute;
+	top: 0;
+	z-index: 0;
+	background: #fff;
+}
+.p-itemMens {
+	position: absolute;
+	top: 0;
+	z-index: 8000;
+	background: #fff;
+}
+
+.p- {
+	@at-root {
+		#{&}style {
+			@at-root {
+				%tableCell {
+					display: table-cell;
+					vertical-align: middle;
+				}
+				#{&}__body {
+					margin: 50px 0 0;
+					display: table;
+					width: 1080px;
+				}
+				#{&}__desc {
+					@extend %tableCell;
+					padding: 0 50px;
+				}
+				#{&}__img {
+					width: 50%;
+					@extend %tableCell;
+					& > img {
+						width: 100%;
+					}
+					@at-root {
+						#{&}-l {
+							@extend %tableCell;
+							width:80%;
+							& > img {
+								width: 100%;
+							}
+						}
+					}
+				}
+				#{&}__whole {
+					@extend %tableCell;
+					position: relative;
+					width: 1080px;
+					& > img {
+						width: 100%;
+					}
+				}
+			}
+		}
+		#{&}topBtns {
+			width: 855px;
+			margin: 0 auto;
+			a {
+				display: block;
+			}
+		}
+		#{&}infoRental {
+			margin-bottom: 20px;
+			@at-root {
+				#{&}__body {
+					background: #f0f4f4;
+					padding: 20px 25px 15px;
+				}
+				#{&}__caption {
+					img {
+						width: 100%;
+					}
+				}
+				#{&}__items {
+					width: 206px;
+					display: inline-block;
+					margin-left: 22px;
+					vertical-align: top;
+					&.first {
+						margin-left: 0;
+					}
+				}
+				#{&}__detail {
+					@include noneHeight(1.5, 12, 10);
+					@at-root {
+						#{selector-append(&, "--item")}{
+							line-height: 1.5;
+							font-size: 12px; 
+						}
+					}
+				}
+			}
+		}
+		#{&}newsTicker {
+			background: url(../img/top/bg_news.jpg);
+			@at-root {
+				#{&}__body {
+					width: 1000px;
+					display: table;
+					margin: 0 auto;
+				}
+				#{&}__title {
+					width: 117px;
+					height: 50px;
+					display: inline-block;
+					background-image: url(../img/top/txt_news.jpg); 
+					font-size: 0;
+					vertical-align: middle;
+				}
+				#{&}__list {
+					display: inline-block;
+					padding: 12px 0px 12px 10px;
+					overflow: hidden;
+					width: 863px;
+					height: 26px;
+					vertical-align: middle;
+					@at-root {
+						#{&}--inner {
+							width: 4415px;
+							margin-top: 4px;
+							display: inline-block;
+						}
+					}
+				}
+				#{&}__item {
+					  display: inline-block;
+					  width: 883px;
+					  float: left;
+					  vertical-align: middle;
+				}
+			}
+		}
+		#{&}button {
+			@at-root {
+				#{&}__two {
+					text-align: center;
+				}
+				#{&}__item {
+					display: inline-block;
+					margin-right: 30px;
+					a {
+						width: 170px;
+					}
+				}
+			}
+		}
+		#{selector-append(&, "interview")} {
+			@at-root {
+				#{&}__txt {
+					margin-bottom: 25px;
+					line-height: 1.5;
+				}
+				#{&}__person {
+					font-weight: bold;
+				}
+			}
+		}
+	}
+}

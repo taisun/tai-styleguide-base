@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>スタイルガイド</title>
+
+  <!-- Styleguide CSS -->
+  <link rel="stylesheet" href="css/guide-syntax.css">
+  <link rel="stylesheet" href="css/guide.css">
+
+  <!-- Source CSS -->
+  <link rel="stylesheet" href="css/main.css">
+</head>
+
+  <body class="guide-body">
+    <div class="guide-pagehead">
+      <div class="guide-container">
+        <nav class="guide-pagehead-nav" role="navigation">
+          <a href="index.html"
+             class="guide-pagehead-nav-item <% if file_name.include?('index.html') %>selected<% end %>">
+            Home
+          </a>
+
+          <% @categories.each do |cat| %>
+          <a href="<%= cat[1] %>"
+             class="guide-pagehead-nav-item <% if title == cat[0] %>selected<% end %>">
+            <%= cat[0] %>
+          </a>
+          <% end %>
+        </nav>
+
+        <h1 class="guide-pagehead-title"><%= @config['global_title'] %></h1>
+      </div>
+    </div>
+
+    <div class="guide-styleguide guide-container">
+      <div class="guide-columns">
+        <% unless @blocks.length == 0 %>
+          <div class="guide-column one-fourth">
+            <nav class="guide-menu">
+              <% @blocks.each do |block| %>
+                <% if not block[:parent] %>
+                  <a href="#<%= block[:name] %>" class="guide-menu-item"><%= block[:title] %></a>
+                <% end %>
+              <% end %>
+            </nav>
+          </div>
+        <% end %>
+
+        <div class="guide-column <% unless @blocks.length == 0 %>three-fourths<% end %>">
+          <div class="guide-content">

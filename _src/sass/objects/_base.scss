@@ -1,0 +1,236 @@
+
+/*doc
+---
+title: Grid
+name: Grid
+category: Grid System
+---
+
+##グリッド
+
+```html_example
+	<div class="g-rows">
+		<div class="g-col__1" style="background:#AEAEAE;height:30px;">1</div>
+	</div>
+```
+```html_example
+	<div class="g-rows">
+		<div class="g-col__2" style="background:#AEAEAE;height:30px;">2</div>
+	</div>
+```
+```html_example
+	<div class="g-rows">
+		<div class="g-col__3" style="background:#AEAEAE;height:30px;">3</div>
+	</div>
+```
+```html_example
+	<div class="g-rows">
+		<div class="g-col__4" style="background:#AEAEAE;height:30px;">4</div>
+	</div>
+```
+```html_example
+	<div class="g-rows">
+		<div class="g-col__5" style="background:#AEAEAE;height:30px;">5</div>
+	</div>
+```
+```html_example
+	<div class="g-rows">
+		<div class="g-col__6" style="background:#AEAEAE;height:30px;">6</div>
+	</div>
+```
+```html_example
+	<div class="g-rows">
+		<div class="g-col__7" style="background:#AEAEAE;height:30px;">7</div>
+	</div>
+````
+```html_example
+	<div class="g-rows">
+		<div class="g-col__8" style="background:#AEAEAE;height:30px;">8</div>
+	</div>
+```
+```html_example
+	<div class="g-rows">
+		<div class="g-col__9" style="background:#AEAEAE;height:30px;">9</div>
+	</div>
+```
+```html_example
+	<div class="g-rows">
+		<div class="g-col__10" style="background:#AEAEAE;height:30px;">10</div>
+	</div>
+```
+```html_example
+	<div class="g-rows">
+		<div class="g-col__11" style="background:#AEAEAE;height:30px;">11</div>
+	</div>
+```
+```html_example
+	<div class="g-rows">
+		<div class="g-col__12" style="background:#AEAEAE;height:30px;">12</div>
+	</div>
+```
+
+##その他組み合わせ例
+**2カラム**<br>
+```html_example
+	<div class="g-rows">
+		<div class="g-col__1" style="background:#AEAEAE;height:30px;">1</div>
+		<div class="g-col__11" style="background:#D5D5D5;height:30px;">11</div>
+	</div>
+```
+```html_example
+	<div class="g-rows">
+		<div class="g-col__2" style="background:#AEAEAE;height:30px;">2</div>
+		<div class="g-col__10" style="background:#D5D5D5;height:30px;">10</div>
+	</div>
+```
+
+```html_example
+	<div class="g-rows">
+		<div class="g-col__9" style="background:#AEAEAE;height:30px;">9</div>
+		<div class="g-col__3" style="background:#D5D5D5;height:30px;">3</div>
+	</div>
+```
+```html_example
+	<div class="g-rows">
+		<div class="g-col__4" style="background:#AEAEAE;height:30px;">4</div>
+		<div class="g-col__8" style="background:#D5D5D5;height:30px;">8</div>
+	</div>
+```
+```html_example
+	<div class="g-rows">
+		<div class="g-col__5" style="background:#AEAEAE;height:30px;">5</div>
+		<div class="g-col__7" style="background:#D5D5D5;height:30px;">7</div>
+	</div>
+```
+```html_example
+	<div class="g-rows">
+		<div class="g-col__6" style="background:#AEAEAE;height:30px;">6</div>
+		<div class="g-col__6" style="background:#D5D5D5;height:30px;">6</div>
+	</div>
+```
+```html_example
+	<div class="g-rows">
+		<div class="g-col__7" style="background:#AEAEAE;height:30px;">7</div>
+		<div class="g-col__5" style="background:#D5D5D5;height:30px;">5</div>
+	</div>
+```
+```html_example
+	<div class="g-rows">
+		<div class="g-col__8" style="background:#AEAEAE;height:30px;">8</div>
+		<div class="g-col__4" style="background:#D5D5D5;height:30px;">4</div>
+	</div>
+```
+```html_example
+	<div class="g-rows">
+		<div class="g-col__9" style="background:#AEAEAE;height:30px;">9</div>
+		<div class="g-col__3" style="background:#D5D5D5;height:30px;">3</div>
+	</div>
+```
+```html_example
+	<div class="g-rows">
+		<div class="g-col__10" style="background:#AEAEAE;height:30px;">10</div>
+		<div class="g-col__2" style="background:#D5D5D5;height:30px;">2</div>
+	</div>
+```
+```html_example
+	<div class="g-rows">
+		<div class="g-col__11" style="background:#AEAEAE;height:30px;">11</div>
+		<div class="g-col__1" style="background:#D5D5D5;height:30px;">1</div>
+	</div>
+```
+
+```html_example
+	<div class="g-rows">
+		<div class="g-col__4" style="background:#AEAEAE;height:30px;">4</div>
+		<div class="g-col__4" style="background:#D5D5D5;height:30px;">4</div>
+		<div class="g-col__4" style="background:#EFEFEF;height:30px;">4</div>
+	</div>
+```
+```html_example
+	<div class="g-rows">
+		<div class="g-col__3" style="background:#AEAEAE;height:30px;">3</div>
+		<div class="g-col__5" style="background:#D5D5D5;height:30px;">5</div>
+		<div class="g-col__4" style="background:#EFEFEF;height:30px;">4</div>
+	</div>
+```
+```html_example
+	<div class="g-rows">
+		<div class="g-col__2" style="background:#AEAEAE;height:30px;">2</div>
+		<div class="g-col__5" style="background:#D5D5D5;height:30px;">5</div>
+		<div class="g-col__5" style="background:#EFEFEF;height:30px;">2</div>
+	</div>
+```
+*/
+%inner {
+	min-width: 1000px;
+}
+%layout {
+	display: block;
+	width: 100%;
+	max-width: 1000px;
+	margin: 0 auto;
+}
+.l- {
+	@at-root {
+		#{&}header {
+			display: inline-block;
+			width: 100%;
+			height: auto;
+			border-top: 10px solid $color__black;
+			background-image: url(../img/common/bg_header.png);
+			vertical-align: top;
+			@at-root {
+				#{&}__top {
+					position: relative;
+					height: auto;
+					@extend %layout;
+				}
+				#{&}__inner {
+					overflow: hidden;
+					width: 960px;
+					padding: 0 10px;
+					margin: 0 auto;
+				}
+			}
+		}
+		#{&}main {
+			display: block;
+			width: 100%;
+			box-sizing: border-box;
+		}
+		#{&}section {
+			margin-bottom: 25px;
+			width: 1000px;
+			margin: 0 auto;
+			@at-root {
+				#{&}__adj {
+					margin-top: 2px;
+				}
+				#{&}__accent {
+					width: 100%;
+				}
+			}
+		}
+		#{&}container {
+			padding: 0 0 40px 55px;
+		}
+		#{&}contents {
+			@extend %layout;
+			margin-bottom: 40px;
+		}
+		#{&}article {
+			display: block;
+			width: 100%;
+		}
+		#{&}inner {
+			text-align: center;
+			@extend %layout;
+		}
+		#{&}footer {
+			margin-top: -15px;
+		}
+		#{&}aside {
+			width: 100%;
+		}
+	}
+}

@@ -1,0 +1,61 @@
+.u-err {
+	color: $color__error !important;
+}
+.u- {
+	@at-root{
+		#{&}mgb__s {
+			margin-bottom: 10px !important;
+		}
+		#{&}mgb__m {
+			margin-bottom: 16px !important;
+		}
+		#{&}mgb__l {
+			margin-bottom: 24px !important;
+		}
+		#{&}mgb__ll {
+			margin-bottom: 32px !important;
+		}
+		#{&}mgb__sl {
+			margin-bottom: 48px !important;
+		}
+		#{&}mgb__xl {
+			margin-bottom: 72px !important;
+		}
+		#{&}mgt__m {
+			margin-bottom: 16px !important;
+		}
+		#{&}right {
+			text-align: right !important;
+		}
+		#{&}center {
+			text-align: center !important;
+		}
+		#{&}top {
+			vertical-align: top !important;
+		}
+		#{&}img__max {
+			img {
+				width: 100% !important;
+			}
+		}
+
+		#{selector-append(&, "btn")} {
+			@at-root {
+				%btnRelative {
+					position: absolute;
+					width: 300px;
+				}
+				#{&}__item2_2 {
+					@extend %btnRelative;
+					bottom: 0;
+					left: 15px;
+				}
+				#{&}__item2_3 {
+					@extend %btnRelative;
+					bottom: 0;
+					right: 15px;
+				}
+			}
+		}
+	}
+}

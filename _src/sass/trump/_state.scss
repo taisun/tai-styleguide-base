@@ -1,0 +1,60 @@
+.is-{
+	@at-root {
+		#{&}fixed {
+			position: fixed !important;
+			top: 0;
+			left: 0;
+		}
+		#{&}tabActive {
+			a {
+				color: #000 !important;
+			}
+		}
+		#{&}ready {
+			background: #ddd;
+			width: 100%;
+			height: 500px;
+			display: inline-block;
+		}
+		#{&}topHead {
+			position: absolute;
+		}
+		#{&}current {
+			a {
+				border-bottom: 4px solid #434343 !important;
+			}
+		}
+		#{&}show {
+			display: block !important;
+		}
+		#{&}page {
+			font-weight: bold;
+		}
+		#{&}contact {
+			padding-bottom: 72px;
+		}
+		#{&}emphasis{
+			color: #f30c0c;
+		}
+		#{&}emphasisLink{
+			color: #f30c0c;
+			text-decoration: underline;
+		}
+	}
+}
+.is-tabActive {
+	.c-tabs__btn--mens {
+		border-top: 8px solid #000 !important;
+		border-bottom: none !important;
+		span {
+			background-position: 0px -156px;
+		}
+	}
+	.c-tabs__btn--ladies {
+		border-top: 8px solid #000 !important;
+		border-bottom: none !important;
+		span {
+			background-position: -155px -108px;
+		}
+	}
+}

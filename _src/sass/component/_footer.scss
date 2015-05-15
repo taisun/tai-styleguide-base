@@ -1,0 +1,131 @@
+/*doc
+---
+title: Footer
+name: Footer
+category: Components CSS
+---
+
+##フッター
+
+基本的なフッターのマークアップです。
+
+```html_example
+<div class="c-footer__bottom">
+	<div class="l-inner">
+		<p class="c-footer__bottom--body">
+			Copyright &copy; taisun0523 All rights reserved.
+		</p>
+	</div>
+</div>
+```
+*/
+.c-{
+	@at-root {
+		#{&}footer {
+			padding: 5px 10px;
+			@at-root {
+				#{selector-append(&, '__bottom')} {
+					@at-root {
+						#{selector-append(&, '--body')} {
+							display: block;
+							padding: 15px 0;
+							display: inline-block;
+							background: #000;
+							width: 100%;
+							color: #fff;
+							font-size: 11px;
+							font-weight: lighter;
+							letter-spacing: 0.8px;
+							text-align: center;
+						}
+					}
+				}
+				#{selector-append(&, '__private')} {
+					text-align: left;
+				}
+				#{selector-append(&, '__copy')} {
+					text-align: right;
+				}
+				#{&}Nav {
+					text-align: center;
+					padding: 37px 0 0;
+					@at-root {
+						#{&}__body {
+							overflow: hidden;
+							margin-left: 120px;
+						}
+						#{&}__item {
+							display: inline-block;
+							margin-left: 30px;
+							padding-left: 30px;
+							border-left: 1px solid #000;
+							line-height: 0.8;
+							a {
+								color: #333;
+								font-size: 12px;
+								&:hover {
+									color: #aaa;
+								}
+							}
+							&:first-child {
+								margin-left: 0;
+								padding-left: 0;
+								border-left: none;
+							}
+						}
+					}
+				}
+			}
+
+		}
+		#{&}company {
+			display: table-cell;
+			vertical-align: bottom;
+			@at-root {
+
+				#{&}__logo {
+					display: table-cell;
+					width: 50%;
+				}
+				#{&}__data {
+					display: table-cell;
+					width: 50%;
+					text-align: left;
+					span {
+						display: block;
+						font-size: 12px;
+						line-height: 1.5;
+					}
+				}
+			}
+		}
+		#{&}fContact {
+				text-align: right;
+				display: table-cell;
+				width: 50%;
+				padding-right: 10px;
+				vertical-align: bottom;
+			li {
+				display: block;
+				line-height: 1.2;
+				}
+			@at-root {
+				#{&}__title {
+
+				}
+				#{&}__tel {
+						font-size: 20px;
+						font-weight: bold;
+					span {
+						font-size: 12px;
+						margin-right: 5px;
+						font-weight: normal;
+					}
+				}
+				#{&}__hours {
+
+				}
+			}
+		}
+	}
+}

@@ -1,0 +1,221 @@
+/*doc
+---
+title: Heading
+name: Heading
+category: Components CSS
+---
+
+#Heading（見出し）
+
+基本的な見出しのマークアップです。
+
+```html_example
+<header class="c-heading c-heading__lvOne">
+<h1>見出しの　Sample</h1>
+</header>
+```
+
+
+```html_example_table
+<header class="c-heading__lvOne">
+  <h1>h1 見出し</h1>
+</header>
+
+<header class="c-heading__lvTwo">
+  <h2>h2 見出し</h2>
+</header>
+
+<header class="c-heading__lvThird">
+  <h3>h3 見出し</h3>
+</header>
+
+<header class="c-heading__lvFour">
+  <h4>h4 見出し</h4>
+</header>
+
+<header class="c-heading__lvFive">
+  <h5>h5 見出し</h5>
+</header>
+```
+
+*/
+
+.c-{
+	@at-root {
+		#{&}heading__ {
+			@at-root {
+				%lvOne {
+					position: relative;
+  					overflow: hidden;
+					h1 {
+						margin: 0 auto;
+						text-align: center;
+					}
+				}
+				#{&}lvOne {
+					@extend %lvOne;
+					padding: 77px 0 56px;
+					background: url(../img/common/bg_base.png);
+					h1 {
+						width: 100%;
+					}
+					@at-root {
+						#{&}--noImg {
+							@extend %lvOne;
+							padding: 0 0 10px;
+							margin-top: -92px;
+  							z-index: -1;
+							h1 {
+								width: 100%;
+						  		min-width: 100%;
+						  		position: absolute;
+								top: 42%;
+								left: 0;
+							}
+						}
+						#{&}--sub {
+							position: absolute;
+							left: 0;
+							bottom: 80px;
+							width: 100%;
+							text-align: center;
+							padding: 15px;
+							background: url(../img/business/bg_heading_sub.png);
+						}
+					}
+				}
+				#{&}lvTwo {
+					border-bottom: 1px solid #000;
+					padding: 8px 0 16px;
+					margin-bottom: 40px;
+					h2 {
+						margin: 0;
+						font-size: 24px;
+						font-weight: lighter;
+					}
+				}
+				#{&}pare {
+					background-color: #f2f2f2;
+					margin-bottom: 70px;
+					h2 {
+						width: 100%;
+						margin: 0 auto;
+						padding: 70px 0;
+					}
+					@at-root {
+						%pres {
+							display: inline-block;
+							vertical-align: middle;
+						}
+						%preItem {
+							width: 40px;
+							height: 207px;
+							border-top: 2px solid #000;
+							border-bottom: 2px solid #000;
+							vertical-align: middle;
+							font-size: 0;
+							display: inline-block;
+						}
+						#{&}--left {
+							@extend %pres;
+							@extend %preItem;
+							border-left: 2px solid #000;
+  							margin-right: 30px;
+						}
+						#{&}--right {
+							@extend %pres;
+							@extend %preItem;
+							border-right: 2px solid #000;
+  							margin-left: 30px;
+						}
+						#{&}--title {
+							@extend %pres;
+							font-size: 0;
+							background-image: url(../img/mission/txt_01.png);
+							width: 851px;
+							height: 158px;
+							margin: auto;
+						}
+					}
+				}
+				#{&}lvThird {
+					border-bottom: 1px solid #000;
+					padding: 8px 0 16px;
+					width: 100%;
+					margin: 0 auto 40px;
+					h3 {
+						margin: 0;
+						font-size: 24px;
+						font-weight: lighter;
+					}
+					@at-root {
+						#{&}--min {
+							margin-bottom: 15px;
+							padding: 5px 0;
+							border-left: 8px solid $color__accent;
+							h3 {
+								font-size: 16px;
+								padding-left: 14px;
+							}
+						}
+					}
+				}
+
+				#{&}lvFour {
+					margin-bottom: 15px;
+					 padding: 5px 0;
+					border-left: 8px solid $color__accent;
+					h4 {
+						font-size: 16px;
+						padding-left: 14px;
+					}
+					@at-root {
+						#{&}--min {
+							border-bottom: 1px solid #000;
+							padding: 3px 0;
+							margin-bottom: 15px;
+							h4 {
+								font-size: 16px;
+								font-weight: bold;
+							}
+						}
+					}
+				}
+				#{&}lvFive {
+					border-bottom: 1px solid #000;
+					padding: 3px 0;
+					margin-bottom: 15px;
+					h5 {
+						font-size: 16px;
+						font-weight: bold;
+					}
+
+				}
+				#{&}exp {
+					margin-bottom: 32px;
+					text-align: left;
+					h2 {
+						font-size: 0;
+					}
+					span {
+						width: 415px;
+						height: 30px;
+						margin-left: 8px;
+						display: inline-block;
+						background: url(../img/common/txt_title_example.png);
+					}
+				}
+				#{&}contact {
+					margin-bottom: 16px;
+					h2 {
+						font-size: 18px;
+						color: #fff;
+						letter-spacing: 1.5px;
+						text-align: center;
+					}
+				}
+			}
+		}
+
+	}
+}

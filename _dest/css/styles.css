@@ -1,0 +1,2244 @@
+@charset "UTF-8";
+/*doc
+---
+title: Coding Rules
+name: CodingRules
+category: Coding Rules
+---
+
+本サイトのマークアップの基本ルールです。
+<br>
+<br>
+
+##マークアップ<br>
+本サイトは以下のバージョンのHTMLで記述しています。
+<br>
+<table style="width:100%;">
+	<tr>
+		<th style="background: #ececec;width: 30%;">Version</th>
+		<td>XTML 1.0</td>
+	</tr>
+	<tr>
+		<th style="background: #ececec;width: 30%;">Charset</th>
+		<td>Shift_JIS</td>
+	</tr>
+</table>
+<br>
+<br>
+本サイトは`head`と`body`をファイルを以下の用に分けて制作していきます。
+<br>
+<br>
+<table style="width:100%;">
+	<thead>
+		<tr>
+			<th style="background: #ececec;"">Tags</th>
+			<th style="background: #ececec;">ファイル名</th>
+			<th style="background: #ececec;">内容</th>
+		</tr>
+	</thead>
+	<tr>
+		<td>head</td>
+		<td>xxx_head.html</td>
+		<td>headのファイルです。headタグは記述しません。</td>
+	</tr>
+	<tr>
+		<td>body</td>
+		<td>xxx.html</td>
+		<td>bodyのファイルです。bodyタグは記述しません。</td>
+	</tr>
+</table>
+<br>
+###head
+以下のような記述をします。
+`xxx`のところは任意で記述してください。
+
+```html_example
+<meta http-equiv="Content-Type" content="text/html; charset=Shift_JIS" />
+
+<meta name="author" content="xxxx"/>
+<meta name="copyright" content="xxxx"/>
+<meta name="keywords" content="HARE,GRIND,COLLECTION,ストリート,ファッション,アパレル,カジュアル,スケーター,スケート,SK8,コレクション,point,styling,スタイリング,スタイリスト,アイテム" />
+<meta name="description" content="xxxxxxxxx" />
+<title>xxxxx</title>
+
+<meta http-equiv="Content-Style-Type" content="text/css"/>
+<meta http-equiv="Content-Script-Type" content="text/javascript"/>
+<link rel="stylesheet" type="text/css" media="all" href="/xxx/xxxx/css/xxx.css" />
+
+<meta property="og:locale" content="ja_JP" />
+<meta property="og:type" content="website" />
+<meta property="og:title" content="xxxxxxx" />
+<meta property="og:site_name" content="xxxxxxx" />
+<meta property="og:description" content="xxxxxx" />
+<meta property="og:url" content="xxxxxx" />
+```
+<br>
+
+###body
+基本的に以下の用な構造で制作します。
+<br>
+
+```html_example
+<div class="warpper">
+	<div class="header">
+		...省略
+	</div>
+	<div class="main">
+		...省略
+	</div>
+	<div class="footer">
+		...省略
+	</div>
+</div>
+```
+
+各パーツのマークアップは[Components]("components_css.html")を参照シてください。
+<br>
+<br>
+##Layout
+レイアウトについて
+本サイトのレイアウトは`グリッドシステム`採用しています。
+12カラムのレイアウト構造です。
+
+詳しくは[BaseStyle]("base_css")を参照してください。
+<br>
+<br>
+##外部ファイル読み込み
+ファイルの読み込みについて説明します。
+`Javascript`や`CSS`の外部ファイルのパスですが
+基本的にルート相対で記述します。
+
+```html_example
+<a href="/xxx/xxx/xxx.css">リンク</a>
+```
+<br>
+###CSSファイル
+<br>
+CSSファイルは基本的に一つにまとめ`minify`化して読み込みます。
+CSSファイルは上から下に読むので上からセレクタ強度が弱い順に記述します。
+例外としてプラグイン等のデフォルトCSSは本サイトオリジナルのCSSの最後に記述してください。
+詳しく[CSS Rules](css.html)を参照してください。
+
+CSSファイルはhead内で読み込みます。
+<br>
+<br>
+
+###Javascriptファイル
+<br>
+Javascript（以下はjs）ファイルもCSS同様一つにまとめ`minfiy`化して読み込みます。
+本サイトは`jQuery`を採用しています。
+`jQuery`は最初に読み込む用してください。
+以下の様な順番でjsファイルを読み込み一つにまとめます。
+<br>
+
+```html_example
+jQuery > load時実行JS > プラグイン系JS 　> イベントハンドラ制御系ｊS
+```
+
+jsファイルは基本的に`</body>`手前で読み込みます。
+
+<br>
+
+##禁止事項
+以下の内容を禁止とシます。
+
+* ・IDセレクタは基本使用しない。
+* ・レイアウト目的の`<br />`は使用しない。
+* ・レイアウト目的で全角＆半角スペースを使用しない。
+* ・レイアウト目的で`&nbsp;`使用しない。
+
+※`&nbsp;`は単位の前のみ使用する(半角スペースではなくNo Break Spaceという意味の為)
+
+<br>
+*/
+/*doc
+---
+title: Config（設定ファイル）
+name: Config（設定ファイル）
+category: Config
+---
+
+#設定ファイル
+
+各種設定です。  
+変数で管理しています。
+
+##色
+
+**Base Colors**
+
+色                                                                  |変数名         |値     |説明            |
+------------------------------------------------------------------- | ------------ | ----- | ------------- |
+<div style="background-color:#a2bb60;height:30px;width:30px;"></div>|`$color__main`  |#a2bb60|メインの色です　　|
+<div style="background-color:#eb6d58;height:30px;width:30px;"></div>|`$color__second`|#eb6d58|サブの色です　　　|
+<div style="background-color:#94c1c8;height:30px;width:30px;"></div>|`$color__accent`|#94c1c8|アクセントの色です|
+<div style="background-color:#0D699C;height:30px;width:30px;"></div>|`$color__sub`   |#0D699C|サブ色です　　　  |
+  
+<br>
+**No Colors**  
+
+色                                                                  |変数名              |値     |説明            |
+------------------------------------------------------------------- | ----------------- | ----- | ------------- |
+<div style="background-color:#515554;height:30px;width:30px;"></div>|`$color__black`      |#515554|黒です　　|
+<div style="background-color:#b0b3b3;height:30px;width:30px;"></div>|`$color__grey`       |#b0b3b3|グレイです　　　|
+<div style="background-color:#cfd2d2;height:30px;width:30px;"></div>|`$color__grey--light|#cfd2d2|明るいグレイです|
+<div style="background-color:#cfd2d2;height:30px;width:30px;"></div>|`$color__grey--dark` |#cfd2d2|暗いグレイです  |
+<div style="background-color:#f4f4f4;height:30px;width:30px;"></div>|`$color__offwhite`   |#f4f4f4|オフホワイトです|
+<div style="background-color:#ffffff;height:30px;width:30px;"></div>|`$color__white`      |#ffffff|白です　　　  |
+<br>
+**Buton Colors**
+
+色                                                                  |変数名              |値     |説明            |
+------------------------------------------------------------------- | ----------------- | ----- | ------------- |
+<div style="background-color:#F0F0F0;height:30px;width:30px;"></div>|`$btn-color-default` |#F0F0F0|デフォルトボタン色です|
+<div style="background-color:#337ab7;height:30px;width:30px;"></div>|`$btn-color-primary` |#337ab7|主要のボタン色です　　|
+<div style="background-color:#5CB85F;height:30px;width:30px;"></div>|`$btn-color-success` |#5CB85F|実行するボタン色です|
+<div style="background-color:#5bc0de;height:30px;width:30px;"></div>|`$btn-color-info`    |#5bc0de|お知らせ等のボタン色です|
+<div style="background-color:#f0ad4e;height:30px;width:30px;"></div>|`$btn-color-denger`  |#f0ad4e|確認のボタン色をです|
+<div style="background-color:#d9534f;height:30px;width:30px;"></div>|`$btn-color-warning` |#d9534f|エラーのボタン色です|
+<br>
+
+**Table Colors**
+
+色                                                                  |変数名                |値     |説明               |
+------------------------------------------------------------------- | ------------------ | ----- | ---------------- |
+<div style="background-color:#bbbbbb;height:30px;width:30px;"></div>|`$table-color-border` |#bbbbbb|tableの線の色です|
+<div style="background-color:#e4e4e4;height:30px;width:30px;"></div>|`$table-color-heading`|#e4e4e4|th色です　|
+<div style="background-color:#ffffff;height:30px;width:30px;"></div>|`$table-color-content`|#ffffff|tdの色です|
+<br>
+
+
+##サイズ
+
+**Braek Point**
+
+変数名                                                                |値                |説明     |
+------------------------------------------------------------------- | ------------------ | ----- |
+`$breakPoint__pc-min` |640|PC表示Min値|
+`$breakPoint__pc-max` |960|PC表示Max値|
+`$breakPoint__tab-min`|640|Tablet表示Min値|
+`$breakPoint__tab-max`|700|Tablet表示Max値|
+`$breakPoint__sp-min` |320|SP表示Min値|
+$breakPoint__sp-max`  |640|SP表示Max値|
+<br>
+**Margin**
+
+変数名                                                                |値                
+------------------------------------------------------------------- | ------------------
+`$mgn__xs` |5|
+`$mgn__sm` |10|
+`$mgn__md` |15|
+`$mgn__n`  |20|
+`$mgn__lg` |30|
+`$mgn__xl` |40|
+`$mgn__xxl`|50|
+*/
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed,
+figure, figcaption, footer, header, hgroup,
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font: inherit;
+  font-size: 100%;
+  vertical-align: baseline;
+}
+
+html {
+  line-height: 1;
+}
+
+ol, ul {
+  list-style: none;
+}
+
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+
+caption, th, td {
+  text-align: left;
+  font-weight: normal;
+  vertical-align: middle;
+}
+
+q, blockquote {
+  quotes: none;
+}
+q:before, q:after, blockquote:before, blockquote:after {
+  content: "";
+  content: none;
+}
+
+a img {
+  border: none;
+  outline: none;
+}
+
+body, html {
+  font-size: 14px;
+  font-family: "Helvetica Neue",Helvetica, Arial, 'Hiragino Kaku Gothic ProN', 'ヒラギノ角ゴ ProN W3', Meiryo, メイリオ, sans-serif;
+}
+
+body {
+  min-width: 1000px;
+}
+
+h1 img, h2 img, h3 img, h4 img, h5 img, h6 img {
+  vertical-align: middle;
+}
+
+strong {
+  font-weight: bold;
+}
+
+img {
+  width: auto;
+  vertical-align: top;
+}
+
+p {
+  line-height: 1.5;
+}
+
+a {
+  outline: none;
+  text-decoration: none;
+  color: #000;
+}
+a:hover {
+  color: #aaa;
+}
+
+li {
+  line-height: 1.5;
+}
+
+table {
+  width: 100%;
+}
+
+tr:first-child th, tr:first-child td {
+  border-top: none;
+}
+
+th {
+  background: #f0f0f0;
+  padding: 15px 20px;
+  border-top: 1px solid #ddd;
+  border-right: 1px solid #ddd;
+}
+
+td {
+  padding: 15px 10px;
+  border-top: 1px solid #ddd;
+}
+
+dd {
+  line-height: 1.5;
+}
+
+/*doc
+---
+title: Grid
+name: Grid
+category: Grid System
+---
+
+##グリッド
+
+```html_example
+	<div class="g-rows">
+		<div class="g-col__1" style="background:#AEAEAE;height:30px;">1</div>
+	</div>
+```
+```html_example
+	<div class="g-rows">
+		<div class="g-col__2" style="background:#AEAEAE;height:30px;">2</div>
+	</div>
+```
+```html_example
+	<div class="g-rows">
+		<div class="g-col__3" style="background:#AEAEAE;height:30px;">3</div>
+	</div>
+```
+```html_example
+	<div class="g-rows">
+		<div class="g-col__4" style="background:#AEAEAE;height:30px;">4</div>
+	</div>
+```
+```html_example
+	<div class="g-rows">
+		<div class="g-col__5" style="background:#AEAEAE;height:30px;">5</div>
+	</div>
+```
+```html_example
+	<div class="g-rows">
+		<div class="g-col__6" style="background:#AEAEAE;height:30px;">6</div>
+	</div>
+```
+```html_example
+	<div class="g-rows">
+		<div class="g-col__7" style="background:#AEAEAE;height:30px;">7</div>
+	</div>
+````
+```html_example
+	<div class="g-rows">
+		<div class="g-col__8" style="background:#AEAEAE;height:30px;">8</div>
+	</div>
+```
+```html_example
+	<div class="g-rows">
+		<div class="g-col__9" style="background:#AEAEAE;height:30px;">9</div>
+	</div>
+```
+```html_example
+	<div class="g-rows">
+		<div class="g-col__10" style="background:#AEAEAE;height:30px;">10</div>
+	</div>
+```
+```html_example
+	<div class="g-rows">
+		<div class="g-col__11" style="background:#AEAEAE;height:30px;">11</div>
+	</div>
+```
+```html_example
+	<div class="g-rows">
+		<div class="g-col__12" style="background:#AEAEAE;height:30px;">12</div>
+	</div>
+```
+
+##その他組み合わせ例
+**2カラム**<br>
+```html_example
+	<div class="g-rows">
+		<div class="g-col__1" style="background:#AEAEAE;height:30px;">1</div>
+		<div class="g-col__11" style="background:#D5D5D5;height:30px;">11</div>
+	</div>
+```
+```html_example
+	<div class="g-rows">
+		<div class="g-col__2" style="background:#AEAEAE;height:30px;">2</div>
+		<div class="g-col__10" style="background:#D5D5D5;height:30px;">10</div>
+	</div>
+```
+
+```html_example
+	<div class="g-rows">
+		<div class="g-col__9" style="background:#AEAEAE;height:30px;">9</div>
+		<div class="g-col__3" style="background:#D5D5D5;height:30px;">3</div>
+	</div>
+```
+```html_example
+	<div class="g-rows">
+		<div class="g-col__4" style="background:#AEAEAE;height:30px;">4</div>
+		<div class="g-col__8" style="background:#D5D5D5;height:30px;">8</div>
+	</div>
+```
+```html_example
+	<div class="g-rows">
+		<div class="g-col__5" style="background:#AEAEAE;height:30px;">5</div>
+		<div class="g-col__7" style="background:#D5D5D5;height:30px;">7</div>
+	</div>
+```
+```html_example
+	<div class="g-rows">
+		<div class="g-col__6" style="background:#AEAEAE;height:30px;">6</div>
+		<div class="g-col__6" style="background:#D5D5D5;height:30px;">6</div>
+	</div>
+```
+```html_example
+	<div class="g-rows">
+		<div class="g-col__7" style="background:#AEAEAE;height:30px;">7</div>
+		<div class="g-col__5" style="background:#D5D5D5;height:30px;">5</div>
+	</div>
+```
+```html_example
+	<div class="g-rows">
+		<div class="g-col__8" style="background:#AEAEAE;height:30px;">8</div>
+		<div class="g-col__4" style="background:#D5D5D5;height:30px;">4</div>
+	</div>
+```
+```html_example
+	<div class="g-rows">
+		<div class="g-col__9" style="background:#AEAEAE;height:30px;">9</div>
+		<div class="g-col__3" style="background:#D5D5D5;height:30px;">3</div>
+	</div>
+```
+```html_example
+	<div class="g-rows">
+		<div class="g-col__10" style="background:#AEAEAE;height:30px;">10</div>
+		<div class="g-col__2" style="background:#D5D5D5;height:30px;">2</div>
+	</div>
+```
+```html_example
+	<div class="g-rows">
+		<div class="g-col__11" style="background:#AEAEAE;height:30px;">11</div>
+		<div class="g-col__1" style="background:#D5D5D5;height:30px;">1</div>
+	</div>
+```
+
+```html_example
+	<div class="g-rows">
+		<div class="g-col__4" style="background:#AEAEAE;height:30px;">4</div>
+		<div class="g-col__4" style="background:#D5D5D5;height:30px;">4</div>
+		<div class="g-col__4" style="background:#EFEFEF;height:30px;">4</div>
+	</div>
+```
+```html_example
+	<div class="g-rows">
+		<div class="g-col__3" style="background:#AEAEAE;height:30px;">3</div>
+		<div class="g-col__5" style="background:#D5D5D5;height:30px;">5</div>
+		<div class="g-col__4" style="background:#EFEFEF;height:30px;">4</div>
+	</div>
+```
+```html_example
+	<div class="g-rows">
+		<div class="g-col__2" style="background:#AEAEAE;height:30px;">2</div>
+		<div class="g-col__5" style="background:#D5D5D5;height:30px;">5</div>
+		<div class="g-col__5" style="background:#EFEFEF;height:30px;">2</div>
+	</div>
+```
+*/
+.l-header__top, .l-contents, .l-inner {
+  display: block;
+  width: 100%;
+  max-width: 1000px;
+  margin: 0 auto;
+}
+
+.l-header {
+  display: inline-block;
+  width: 100%;
+  height: auto;
+  border-top: 10px solid #2e2e2e;
+  background-image: url(../img/common/bg_header.png);
+  vertical-align: top;
+}
+.l-header__top {
+  position: relative;
+  height: auto;
+}
+
+.l-header__inner {
+  overflow: hidden;
+  width: 960px;
+  padding: 0 10px;
+  margin: 0 auto;
+}
+
+.l-main {
+  display: block;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.l-section {
+  margin-bottom: 25px;
+  width: 1000px;
+  margin: 0 auto;
+}
+.l-section__adj {
+  margin-top: 2px;
+}
+
+.l-section__accent {
+  width: 100%;
+}
+
+.l-container {
+  padding: 0 0 40px 55px;
+}
+
+.l-contents {
+  margin-bottom: 40px;
+}
+
+.l-article {
+  display: block;
+  width: 100%;
+}
+
+.l-inner {
+  text-align: center;
+}
+
+.l-footer {
+  margin-top: -15px;
+}
+
+.l-aside {
+  width: 100%;
+}
+
+.p-itemWrap__mono {
+  position: relative;
+  height: 2400px;
+}
+
+.p-itemWrap__item {
+  position: relative;
+  height: 800px;
+}
+
+.p-itemLadies {
+  position: absolute;
+  top: 0;
+  z-index: 0;
+  background: #fff;
+}
+
+.p-itemMens {
+  position: absolute;
+  top: 0;
+  z-index: 8000;
+  background: #fff;
+}
+
+.p-style__desc, .p-style__img, .p-style__img-l, .p-style__whole {
+  display: table-cell;
+  vertical-align: middle;
+}
+
+.p-style__body {
+  margin: 50px 0 0;
+  display: table;
+  width: 1080px;
+}
+
+.p-style__desc {
+  padding: 0 50px;
+}
+
+.p-style__img {
+  width: 50%;
+}
+.p-style__img > img {
+  width: 100%;
+}
+.p-style__img-l {
+  width: 80%;
+}
+.p-style__img-l > img {
+  width: 100%;
+}
+
+.p-style__whole {
+  position: relative;
+  width: 1080px;
+}
+.p-style__whole > img {
+  width: 100%;
+}
+
+.p-topBtns {
+  width: 855px;
+  margin: 0 auto;
+}
+.p-topBtns a {
+  display: block;
+}
+
+.p-infoRental {
+  margin-bottom: 20px;
+}
+.p-infoRental__body {
+  background: #f0f4f4;
+  padding: 20px 25px 15px;
+}
+
+.p-infoRental__caption img {
+  width: 100%;
+}
+
+.p-infoRental__items {
+  width: 206px;
+  display: inline-block;
+  margin-left: 22px;
+  vertical-align: top;
+}
+.p-infoRental__items.first {
+  margin-left: 0;
+}
+
+.p-infoRental__detail {
+  margin-top: -3px;
+  margin-bottom: -3px;
+  padding-bottom: 10px;
+}
+.p-infoRental__detail--item {
+  line-height: 1.5;
+  font-size: 12px;
+}
+
+.p-newsTicker {
+  background: url(../img/top/bg_news.jpg);
+}
+.p-newsTicker__body {
+  width: 1000px;
+  display: table;
+  margin: 0 auto;
+}
+
+.p-newsTicker__title {
+  width: 117px;
+  height: 50px;
+  display: inline-block;
+  background-image: url(../img/top/txt_news.jpg);
+  font-size: 0;
+  vertical-align: middle;
+}
+
+.p-newsTicker__list {
+  display: inline-block;
+  padding: 12px 0px 12px 10px;
+  overflow: hidden;
+  width: 863px;
+  height: 26px;
+  vertical-align: middle;
+}
+.p-newsTicker__list--inner {
+  width: 4415px;
+  margin-top: 4px;
+  display: inline-block;
+}
+
+.p-newsTicker__item {
+  display: inline-block;
+  width: 883px;
+  float: left;
+  vertical-align: middle;
+}
+
+.p-button__two {
+  text-align: center;
+}
+
+.p-button__item {
+  display: inline-block;
+  margin-right: 30px;
+}
+.p-button__item a {
+  width: 170px;
+}
+
+.p-interview__txt {
+  margin-bottom: 25px;
+  line-height: 1.5;
+}
+
+.p-interview__person {
+  font-weight: bold;
+}
+
+/*doc
+---
+title: Typography
+name: Typography
+category: Components CSS
+---
+
+基本的なフォントは以下になります。
+
+使用フォント                                                                                                   | 単位          | ベースサイズ
+------------------------------------------------------------------------------------------------------------ |------------- | -----------
+font-family:'Lucida Grande', 'Hiragino Kaku Gothic ProN', 'ヒラギノ角ゴ ProN W3', Meiryo, メイリオ, sans-serif; | px（ピクセル） | 14px
+
+<br>
+テキストのマークアップ＆デザインです。
+
+```html_example_table
+<p>基本のてきすと</p>
+
+<p class="u-err">エラーテキスト</p>
+
+<p><strong>太字テキスト</strong></p>
+
+<p><small>サブテキスト</small></p>
+
+```
+<br>
+
+###注釈
+
+注釈のマークアップです。
+
+```html_example
+<dl class="c-annotation">
+	<dt>※</dt><dd>テキストテキストテキストテキストテキストテキストテキストテキストテキストテキスト</dd>
+</dl>
+```
+
+###定義文1
+```html_example
+<dl class="c-definition">
+	<dt>テキストテキストテキストテキスト</dt>
+	<dd>テキストテキストテキストテキストテキストテキストテキストテキスト</dd>
+</dl>
+```
+
+###定義文2
+```html_example
+<dl class="c-definitionTbl">
+	<dt class="c-definitionTbl__title"><span>項目1</span></dt>
+	<dd class="c-definitionTbl__body">
+		<ol>
+			<li>
+				<span class="c-definitionTbl__num">（1）</span>
+				<span class="c-definitionTbl__txt">
+				テキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキスト
+				</span>
+			</li>
+			<li>
+				<span class="c-definitionTbl__num">（2）</span>
+				<span class="c-definitionTbl__txt">テキストテキストテキストテキスト</span>
+			</li>
+			<li>
+				<span class="c-definitionTbl__num">（3）</span>
+				<span class="c-definitionTbl__txt">
+              テキストテキストテキストテキスト<br>テキストテキストテキストテキスト<br>テキストテキストテキストテキスト
+				</span>
+			</li>
+		</ol>
+	</dd>
+</dl>
+<dl class="c-definitionTbl">
+	<dt class="c-definitionTbl__title"><span>項目2</span></dt>
+	<dd class="c-definitionTbl__body">
+	テキストテキストテキストテキストテキストテキストテキストテキスト
+	</dd>
+</dl>
+```
+
+###囲み
+
+```html_example
+<div class="c-infoNote">
+	<div class="c-infoNote__inner">
+		<p>テキストテキストテキストテキストテキストテキストテキストテキストテキストテキスト</p>
+	</div>
+</div>
+```
+
+ */
+.c-annotation {
+  background: transparent;
+}
+.c-annotation dt {
+  float: left;
+  padding: 0 0;
+  font-weight: normal;
+  text-indent: 0em;
+}
+.c-annotation dd {
+  padding: 0 0 0 1.25em;
+  margin: 0;
+}
+
+.c-infoNote {
+  width: 100%;
+  clear: both;
+  border: 2px solid #ddd;
+}
+.c-infoNote__inner {
+  background: #fff;
+  padding: 10px 0;
+  width: 100%;
+  display: table;
+}
+
+.c-infoNote__right, .c-infoNote__left {
+  display: inline-block;
+  vertical-align: middle;
+  float: left;
+}
+
+.c-infoNote__right {
+  width: 342px;
+}
+
+.c-infoNote__left {
+  width: 300px;
+}
+.c-infoNote__left img {
+  margin-top: 10px;
+}
+
+.c-errorTxt {
+  display: none;
+  color: #e60012;
+  padding: 5px 0;
+}
+
+.c-description {
+  text-align: center;
+  margin-bottom: 23px;
+}
+.c-description__left, .c-description__right, .c-description__txt {
+  display: inline-block;
+  vertical-align: middle;
+}
+
+.c-description__left, .c-description__right {
+  border-top: 1px solid #000;
+  border-bottom: 1px solid #000;
+  vertical-align: middle;
+  font-size: 0;
+  display: inline-block;
+  padding: 70px 7px;
+}
+
+.c-description__left {
+  border-left: 1px solid #000;
+  margin-right: 40px;
+}
+
+.c-description__right {
+  border-right: 1px solid #000;
+  margin-left: 40px;
+}
+
+.c-description__txt {
+  width: 330px;
+  font-size: 20px;
+  line-height: 1.8;
+}
+
+.c-innerTxt {
+  padding: 0 10px;
+}
+
+.c-txtLabel {
+  margin-bottom: 24px;
+}
+
+.c-definition__title {
+  padding: 0px 0 3px 8px;
+  margin-bottom: 16px;
+  font-size: 16px;
+  font-weight: bold;
+  display: inline-block;
+  width: 116px;
+}
+
+.c-definition__txt {
+  display: inline-block;
+  width: 350px;
+  vertical-align: middle;
+  border-left: 1px solid #000;
+  padding-left: 20px;
+}
+
+.c-definition__coad {
+  display: block;
+}
+
+.c-definitionInner__title {
+  display: inline-block;
+  border-bottom: 1px solid #000;
+  padding: 10px 0 5px;
+  margin-bottom: 10px;
+  font-size: 14px;
+  font-weight: bold;
+}
+
+.c-definitionInner__txt {
+  margin-bottom: 10px;
+  line-height: 1.5;
+}
+
+.c-definitionTbl {
+  display: table;
+  margin-bottom: 24px;
+}
+.c-definitionTbl__title {
+  display: table-cell;
+  width: 150px;
+}
+.c-definitionTbl__title span {
+  border-left: 1px solid  #000;
+  padding-left: 10px;
+}
+
+.c-definitionTbl__body {
+  display: table-cell;
+}
+.c-definitionTbl__body li {
+  line-height: 1.8;
+}
+
+.c-definitionTbl__num {
+  display: table-cell;
+}
+
+.c-definitionTbl__txt {
+  display: table-cell;
+}
+
+.c-txt__desc {
+  font-size: 14px;
+  margin-bottom: 56px;
+}
+
+/*doc
+---
+title: Heading
+name: Heading
+category: Components CSS
+---
+
+#Heading（見出し）
+
+基本的な見出しのマークアップです。
+
+```html_example
+<header class="c-heading c-heading__lvOne">
+<h1>見出しの　Sample</h1>
+</header>
+```
+
+
+```html_example_table
+<header class="c-heading__lvOne">
+  <h1>h1 見出し</h1>
+</header>
+
+<header class="c-heading__lvTwo">
+  <h2>h2 見出し</h2>
+</header>
+
+<header class="c-heading__lvThird">
+  <h3>h3 見出し</h3>
+</header>
+
+<header class="c-heading__lvFour">
+  <h4>h4 見出し</h4>
+</header>
+
+<header class="c-heading__lvFive">
+  <h5>h5 見出し</h5>
+</header>
+```
+
+*/
+.c-heading__lvOne, .c-heading__lvOne--noImg {
+  position: relative;
+  overflow: hidden;
+}
+.c-heading__lvOne h1, .c-heading__lvOne--noImg h1 {
+  margin: 0 auto;
+  text-align: center;
+}
+
+.c-heading__lvOne {
+  padding: 77px 0 56px;
+  background: url(../img/common/bg_base.png);
+}
+.c-heading__lvOne h1 {
+  width: 100%;
+}
+.c-heading__lvOne--noImg {
+  padding: 0 0 10px;
+  margin-top: -92px;
+  z-index: -1;
+}
+.c-heading__lvOne--noImg h1 {
+  width: 100%;
+  min-width: 100%;
+  position: absolute;
+  top: 42%;
+  left: 0;
+}
+
+.c-heading__lvOne--sub {
+  position: absolute;
+  left: 0;
+  bottom: 80px;
+  width: 100%;
+  text-align: center;
+  padding: 15px;
+  background: url(../img/business/bg_heading_sub.png);
+}
+
+.c-heading__lvTwo {
+  border-bottom: 1px solid #000;
+  padding: 8px 0 16px;
+  margin-bottom: 40px;
+}
+.c-heading__lvTwo h2 {
+  margin: 0;
+  font-size: 24px;
+  font-weight: lighter;
+}
+
+.c-heading__pare {
+  background-color: #f2f2f2;
+  margin-bottom: 70px;
+}
+.c-heading__pare h2 {
+  width: 100%;
+  margin: 0 auto;
+  padding: 70px 0;
+}
+.c-heading__pare--left, .c-heading__pare--right, .c-heading__pare--title {
+  display: inline-block;
+  vertical-align: middle;
+}
+
+.c-heading__pare--left, .c-heading__pare--right {
+  width: 40px;
+  height: 207px;
+  border-top: 2px solid #000;
+  border-bottom: 2px solid #000;
+  vertical-align: middle;
+  font-size: 0;
+  display: inline-block;
+}
+
+.c-heading__pare--left {
+  border-left: 2px solid #000;
+  margin-right: 30px;
+}
+
+.c-heading__pare--right {
+  border-right: 2px solid #000;
+  margin-left: 30px;
+}
+
+.c-heading__pare--title {
+  font-size: 0;
+  background-image: url(../img/mission/txt_01.png);
+  width: 851px;
+  height: 158px;
+  margin: auto;
+}
+
+.c-heading__lvThird {
+  border-bottom: 1px solid #000;
+  padding: 8px 0 16px;
+  width: 100%;
+  margin: 0 auto 40px;
+}
+.c-heading__lvThird h3 {
+  margin: 0;
+  font-size: 24px;
+  font-weight: lighter;
+}
+.c-heading__lvThird--min {
+  margin-bottom: 15px;
+  padding: 5px 0;
+  border-left: 8px solid #95c276;
+}
+.c-heading__lvThird--min h3 {
+  font-size: 16px;
+  padding-left: 14px;
+}
+
+.c-heading__lvFour {
+  margin-bottom: 15px;
+  padding: 5px 0;
+  border-left: 8px solid #95c276;
+}
+.c-heading__lvFour h4 {
+  font-size: 16px;
+  padding-left: 14px;
+}
+.c-heading__lvFour--min {
+  border-bottom: 1px solid #000;
+  padding: 3px 0;
+  margin-bottom: 15px;
+}
+.c-heading__lvFour--min h4 {
+  font-size: 16px;
+  font-weight: bold;
+}
+
+.c-heading__lvFive {
+  border-bottom: 1px solid #000;
+  padding: 3px 0;
+  margin-bottom: 15px;
+}
+.c-heading__lvFive h5 {
+  font-size: 16px;
+  font-weight: bold;
+}
+
+.c-heading__exp {
+  margin-bottom: 32px;
+  text-align: left;
+}
+.c-heading__exp h2 {
+  font-size: 0;
+}
+.c-heading__exp span {
+  width: 415px;
+  height: 30px;
+  margin-left: 8px;
+  display: inline-block;
+  background: url(../img/common/txt_title_example.png);
+}
+
+.c-heading__contact {
+  margin-bottom: 16px;
+}
+.c-heading__contact h2 {
+  font-size: 18px;
+  color: #fff;
+  letter-spacing: 1.5px;
+  text-align: center;
+}
+
+/*doc
+---
+title: Button
+name: Button
+category: Components CSS
+---
+
+##ボタン
+
+共通クラスなるc-buttonはsassの機能プレースホルダ%buttonとして@extendしています。<br>
+そのためクラスの記述はしていません。
+
+```html_example
+<a class="c-button__default"><span>Default</span></a>
+```
+
+```html_example_table
+<a class="c-button__primary">Primary</a>
+
+<a class="c-button__success">Success</a>
+
+<a class="c-button__info">Info</a>
+
+<a class="c-button__warning">Warning</a>
+
+<a class="c-button__denger">Denger</a>
+
+<a class="c-button__link">Link</a>
+```
+ */
+.c-button__default, .c-button__success, .c-button__warning, .c-button__denger, .c-button__link, .c-button__info {
+  display: inline-block;
+  padding: 20px 50px;
+  color: #fff;
+  cursor: pointer;
+  text-align: center;
+  border-radius: 3px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.c-button__default {
+  text-align: center;
+  color: #2e2e2e;
+  background: #eee;
+  border-bottom: 2px solid #aaa9a9;
+  margin-bottom: 24px;
+}
+.c-button__default:hover {
+  background: #dcdcdc;
+  color: #2e2e2e;
+}
+
+.c-button__primary {
+  background: #999;
+  border-radius: 3px;
+  border-bottom: 3px #6d6c6c solid;
+  color: #fff;
+  display: inline-block;
+  padding: 20px 50px;
+}
+.c-button__primary:hover {
+  color: #fff;
+  background: #5b5b5b;
+}
+
+.c-button__success {
+  text-align: center;
+  background: #5CB85F;
+}
+
+.c-button__warning {
+  text-align: center;
+  background: #d9534f;
+}
+
+.c-button__denger {
+  text-align: center;
+  background: #f0ad4e;
+}
+
+.c-button__link {
+  text-align: center;
+  color: #2e2e2e;
+  background: none;
+}
+
+.c-button__info {
+  text-align: center;
+  background: #5bc0de;
+}
+
+.c-icn__new, .c-icn__popup, .c-icn__glass, .c-icn__arrowBottom, .c-icn__arrowRight, .c-icn__arrowTopRight {
+  font-size: 0;
+  display: inline-block;
+}
+
+.c-icn__required {
+  font-size: 12px;
+  padding: 3px 8px;
+  background: red;
+  border-radius: 4px;
+  color: #fff;
+  font-weight: lighter;
+  margin-left: 15px;
+}
+
+.c-icn__new {
+  width: 41px;
+  height: 20px;
+  margin-left: 10px;
+  vertical-align: middle;
+}
+
+.c-icn__popup {
+  width: 13px;
+  height: 12px;
+  vertical-align: middle;
+  margin: -2px 0 0 5px;
+}
+
+.c-icn__glass {
+  background-repeat: no-repeat;
+  width: 22px;
+  height: 22px;
+  vertical-align: middle;
+  margin: -2px 0 0 15px;
+}
+
+.c-icn__arrowBottom {
+  background-repeat: no-repeat;
+  width: 18px;
+  height: 9px;
+  vertical-align: middle;
+  margin: -2px 0 0 15px;
+}
+
+.c-icn__arrowRight {
+  width: 12px;
+  height: 12px;
+  vertical-align: middle;
+  margin: -2px 12px 0 0;
+}
+
+.c-icn__arrowTopRight {
+  margin-left: 15px;
+  width: 9px;
+  height: 13px;
+  vertical-align: middle;
+}
+
+.c-txtLabel__new, .c-txtLabel__default {
+  padding: 2px 10px;
+  color: #fff;
+  font-size: 12px;
+}
+
+.c-txtLabel__new {
+  background: #1c7ad8;
+}
+
+.c-txtLabel__default {
+  background: #9b9b9a;
+}
+
+/*doc
+---
+title: table
+name: table
+category: Components CSS
+---
+##table
+```html_example
+<div class="c-tableBorder">
+	<table>
+		<tbody>
+			<tr>
+				<th>項目</th>
+				<td>テキスト</td>
+			</tr>
+			<tr>
+				<th>項目</th>
+				<td>テキスト</td>
+			</tr>
+			<tr>
+				<th>項目</th>
+				<td>テキスト</td>
+			</tr>
+			<tr>
+				<th>項目</th>
+				<td>テキスト</td>
+			</tr>
+			<tr>
+				<th>項目</th>
+				<td>テキスト</td>
+			</tr>
+		</tbody>
+	</table>
+</div>
+```
+
+##table noborder
+
+```html_example
+<div class="c-tableNoBorder">
+	<table>
+		<tbody>
+			<tr class="first">
+				<th>項目</th>
+				<td>テキスト</td>
+			</tr>
+			<tr>
+				<th>項目</th>
+				<td>テキスト</td>
+			</tr>
+			<tr>
+				<th>項目</th>
+				<td>テキスト</td>
+			</tr>
+			<tr>
+				<th>項目</th>
+				<td>テキスト</td>
+			</tr>
+			<tr class="last">
+				<th>項目</th>
+				<td>テキスト</td>
+			</tr>
+		</tbody>
+	</table>
+</div>
+```
+*/
+.c-tableBorder table {
+  border: 1px solid #ddd;
+  line-height: 1.5;
+}
+
+.c-tableNoBorder table {
+  border: 1px solid #000;
+}
+.c-tableNoBorder th, .c-tableNoBorder td {
+  padding: 15px 0 30px 30px;
+  border: none;
+  background: #fff;
+}
+.c-tableNoBorder tr {
+  border: none;
+}
+.c-tableNoBorder th {
+  border-right: 1px solid #000;
+  font-weight: normal;
+  width: 125px;
+}
+.c-tableNoBorder .first th, .c-tableNoBorder .first td {
+  padding-top: 30px;
+}
+.c-tableNoBorder .last th, .c-tableNoBorder .last td {
+  padding-bottom: 30px;
+}
+
+.g-rows {
+  display: table;
+  clear: both;
+  width: 100%;
+}
+
+.g-col__1 {
+  width: 8.33333%;
+  width: 80px\9;
+  display: inline-block;
+  float: left;
+  vertical-align: middle;
+}
+
+.g-col__2 {
+  width: 16.66667%;
+  width: 160px\9;
+  display: inline-block;
+  float: left;
+  vertical-align: middle;
+}
+
+.g-col__3 {
+  width: 25%;
+  width: 240px\9;
+  display: inline-block;
+  float: left;
+  vertical-align: middle;
+}
+
+.g-col__4 {
+  width: 33.33333%;
+  width: 320px\9;
+  display: inline-block;
+  float: left;
+  vertical-align: middle;
+}
+
+.g-col__5 {
+  width: 41.66667%;
+  width: 400px\9;
+  display: inline-block;
+  float: left;
+  vertical-align: middle;
+}
+
+.g-col__6 {
+  width: 50%;
+  width: 480px\9;
+  display: inline-block;
+  float: left;
+  vertical-align: middle;
+}
+
+.g-col__7 {
+  width: 58.33333%;
+  width: 560px\9;
+  display: inline-block;
+  float: left;
+  vertical-align: middle;
+}
+
+.g-col__8 {
+  width: 66.66667%;
+  width: 640px\9;
+  display: inline-block;
+  float: left;
+  vertical-align: middle;
+}
+
+.g-col__9 {
+  width: 75%;
+  width: 720px\9;
+  display: inline-block;
+  float: left;
+  vertical-align: middle;
+}
+
+.g-col__10 {
+  width: 83.33333%;
+  width: 800px\9;
+  display: inline-block;
+  float: left;
+  vertical-align: middle;
+}
+
+.g-col__11 {
+  width: 91.66667%;
+  width: 880px\9;
+  display: inline-block;
+  float: left;
+  vertical-align: middle;
+}
+
+.g-col__12 {
+  width: 100%;
+  width: 960px\9;
+  display: inline-block;
+  float: left;
+  vertical-align: middle;
+}
+
+.g-colT__1 {
+  width: 8.33333%;
+  display: table-cell;
+  vertical-align: top;
+}
+
+.g-colT__2 {
+  width: 16.66667%;
+  display: table-cell;
+  vertical-align: top;
+}
+
+.g-colT__3 {
+  width: 25%;
+  display: table-cell;
+  vertical-align: top;
+}
+
+.g-colT__4 {
+  width: 33.33333%;
+  display: table-cell;
+  vertical-align: top;
+}
+
+.g-colT__5 {
+  width: 41.66667%;
+  display: table-cell;
+  vertical-align: top;
+}
+
+.g-colT__6 {
+  width: 50%;
+  display: table-cell;
+  vertical-align: top;
+}
+
+.g-colT__7 {
+  width: 58.33333%;
+  display: table-cell;
+  vertical-align: top;
+}
+
+.g-colT__8 {
+  width: 66.66667%;
+  display: table-cell;
+  vertical-align: top;
+}
+
+.g-colT__9 {
+  width: 75%;
+  display: table-cell;
+  vertical-align: top;
+}
+
+.g-colT__10 {
+  width: 83.33333%;
+  display: table-cell;
+  vertical-align: top;
+}
+
+.g-colT__11 {
+  width: 91.66667%;
+  display: table-cell;
+  vertical-align: top;
+}
+
+.g-colT__12 {
+  width: 100%;
+  display: table-cell;
+  vertical-align: top;
+}
+
+/*doc
+---
+title: List
+name: List
+category: Components CSS
+---
+
+基本的なリストのマークアップです。
+
+##ナンバー付きリスト
+
+```html_example
+<ol class="c-listNumber">
+	<li class="c-listNumber__item">
+		<dl class="c-listNumber__body">
+			<dt class="c-listNumber__num">(1)</dt>
+			<dd class="c-listNumber__txt">テキストテキストテキストテキストテキストテキスト</dd>
+		</dl>
+	</li>
+	<li class="c-listNumber__item">
+		<dl class="c-listNumber__body">
+			<dt class="c-listNumber__num">(2)</dt>
+			<dd class="c-listNumber__txt">
+				<span>テキストテキストテキストテキストテキストテキストテキスト</span>
+				<ul>
+					<li>テキストテキストテキストテキストテキストテキストテキスト</li>
+					<li>テキストテキストテキストテキストテキストテキストテキスト</li>
+				</ul>
+			</dd>
+		</dl>
+	</li>
+	<li class="c-listNumber__item">
+		<dl class="c-listNumber__body">
+			<dt class="c-listNumber__num">(3)</dt>
+			<dd class="c-listNumber__txt">テキストテキストテキストテキストテキストテキストテキスト</dd>
+		</dl>
+	</li>
+	<li class="c-listNumber__item">
+		<dlv class="c-listNumber__body">
+			<dt class="c-listNumber__num">(4)</dt>
+			<dd>テキストテキストテキストテキストテキストテキストテキスト</dd>
+		</dl>
+	</li>
+	<li class="c-listNumber__item">
+		<dl class="c-listNumber__body">
+			<dt class="c-listNumber__num">(5)</dt>
+			<dd class="c-listNumber__txt">テキストテキストテキストテキストテキストテキストテキスト</dd>
+		</dl>
+	</li>
+	<li class="c-listNumber__item">
+		<dl class="c-listNumber__body">
+			<dt class="c-listNumber__num">(6)</dt>
+			<dd class="c-listNumber__txt">テキストテキストテキストテキストテキストテキストテキスト</dd>
+		</dl>
+	</li>
+</ol>
+```
+
+##サイトマップリスト
+
+```html_example
+	<ul class="c-siteMaplist">
+		<li class="c-siteMaplist__item"><a href="xxx.html">テキスト</a></li>
+		<li class="c-siteMaplist__item"><a href="xxx.html">テキスト</a></li>
+		<li class="c-siteMaplist__item"><a href="xxx.html">テキスト</a></li>
+		<li class="c-siteMaplist__item"><a href="xxx.html">テキストテキスト</a></li>
+		<li class="c-siteMaplist__item"><a href="xxx.html">テキスト</a></li>
+	</ul>
+```
+ */
+.c-listLink__item {
+  margin-bottom: 20px;
+}
+.c-listLink__item a {
+  color: #d86f19;
+  text-decoration: underline;
+}
+
+.c-listNumber__item {
+  line-height: 1.6;
+}
+
+.c-listNumber__body {
+  display: table;
+}
+
+.c-listNumber__num, .c-listNumber__txt {
+  display: table-cell;
+}
+
+.c-listNumber__num {
+  padding-right: 8px;
+}
+
+.c-listNews {
+  border-top: 1px solid #e0e0e0;
+  border-bottom: 1px solid #e0e0e0;
+  padding: 10px 10px 5px;
+}
+.c-listNews__item {
+  display: block;
+  width: 100%;
+  margin-bottom: 5px;
+}
+
+.c-listNews__data, .c-listNews__link {
+  display: table-cell;
+}
+
+.c-listNews__link {
+  padding-left: 30px;
+}
+.c-listNews__link a {
+  color: #000;
+}
+
+.c-labeList {
+  margin-bottom: 10px;
+}
+.c-labeList__item {
+  display: inline-block;
+}
+
+.c-elementList__item {
+  position: relative;
+  margin-bottom: 15px;
+}
+.c-elementList__item:hover dl {
+  display: block;
+}
+
+.c-tableList {
+  display: table;
+}
+.c-tableList__item {
+  display: inline-block;
+  width: 50%;
+  vertical-align: text-top;
+  margin-bottom: 15px;
+}
+
+.c-siteMaplist {
+  width: 700px;
+  margin: 0 auto;
+}
+.c-siteMaplist__item {
+  display: inline-block;
+  width: 48%;
+  margin-bottom: 35px;
+  border-left: 8px solid #95c276;
+}
+.c-siteMaplist__item a {
+  display: inline-block;
+  width: 180px;
+  margin-left: 20px;
+}
+
+/*doc
+---
+title: Navigaation
+name: Navigaation
+category: Components CSS
+---
+
+ナビゲーションのマークアップです。
+
+##ヘッダー
+```html_example
+<header id="header" class="l-header">
+	<div class="l-inner g-rows">
+		<p class="c-logo g-col__4"><a href="/">ロゴ</a></p>
+		<nav class="c-subNav g-col__8">
+			<ul class="c-subNav__body">
+				<li class="c-subNav__item"><a href="xxx.html">LINK1</a></li><li class="c-subNav__item"><a href="xxx.html">LINK2</a></li><li class="c-subNav__item"><a href="xxx.html">LINK3</a></li>
+			</ul>
+		</nav>
+	</div>
+</header>
+```
+
+##グローバルナビゲーション
+
+基本的なグローバルナビゲーションのマークアップになります。
+
+```html_example
+<nav class="c-gloNav">
+	<ul class="c-gloNav__body">
+		<li class="c-gloNav__item"><a href="/"><span>Menu1</span></a></li><li class="c-gloNav__item is-currentMenu"><a href="/"><span>Menu2</span></a></li><li class="c-gloNav__item"><a href="/"><span>Menu3</span></a></li><li class="c-gloNav__item"><a href="/"><span>Menu4</span></a></li><li class="c-gloNav__item"><a href="/"><span>Menu5</span></a></li>
+	</ul>
+</nav>
+```
+
+##フッター
+
+```html_example
+<footer class="l-footer">
+	<nav class="c-footerNav">
+		<ul class="c-footerNav__body">
+			<li class="c-footerNav__item"><a href="/">Menu1</a></li>
+			<li class="c-footerNav__item"><a href="/">Menu2</a></li>
+			<li class="c-footerNav__item"><a href="/">Menu3</a></li>
+			<li class="c-footerNav__item"><a href="/">Menu4</a></li>
+			<li class="c-footerNav__item"><a href="#">Menu5</a></li>
+		</ul>
+	</nav>
+</footer>
+```
+
+##パンくずリスト
+
+パンくずリストです。
+
+```html_example
+<nav class="c-breadCrumb">
+	<ul class="c-breadCrumb__body">
+		<li class="c-breadCrumb__item"><a class="c-breadCrumb__link">パンくず１</a><span class="c-breadCrumb__arrow">></span></li>
+		<li class="c-breadCrumb__item"><a class="c-breadCrumb__link">パンくず２</a><span class="c-breadCrumb__arrow">></span></li>
+		<li class="c-breadCrumb__item"><a class="c-breadCrumb__link">パンくず３</a><span class="c-breadCrumb__arrow">></span></li>
+		<li class="c-breadCrumb__item is-page">パンくず4</li>
+	</ul>
+</nav>
+```
+
+##トップへ戻る
+
+トップへ戻るボタンです。
+
+```html_example
+<ul class="c-pageTop">
+	<li class="c-pageTop__item">
+		<a href="#" class="c-pageTop__text">トップへ戻る</a>
+	</li>
+</ul>
+
+```
+ */
+.c-logo {
+  vertical-align: top;
+  text-align: left;
+}
+.c-logo a {
+  font-size: 40px;
+  display: block;
+  /* background-image: url(../img/common/logo.png); */
+  width: 322px;
+  height: 82px;
+}
+
+.c-gloNav {
+  overflow: hidden;
+  margin-top: 9px;
+}
+.c-gloNav__body {
+  display: table;
+  width: 100%;
+}
+.c-gloNav__body a:hover {
+  border-bottom: 4px solid #434343;
+}
+
+.c-gloNav__item {
+  display: table-cell;
+  width: 20%;
+}
+.c-gloNav__item:hover {
+  color: #e2e2e2;
+}
+.c-gloNav__item a {
+  display: inline-block;
+  text-align: center;
+}
+.c-gloNav__item a span {
+  display: block;
+  margin: 0 auto;
+}
+.c-subNav {
+  text-align: right;
+}
+.c-subNav__item {
+  display: inline-block;
+  margin-right: 16px;
+}
+.c-subNav__item a {
+  font-size: 14px;
+  display: block;
+  width: 100%;
+}
+
+.c-breadCrumb {
+  display: table;
+  width: 100%;
+  padding: 24px 0 32px;
+}
+.c-breadCrumb__body {
+  width: 100%;
+  margin: 0 auto;
+}
+
+.c-breadCrumb__item {
+  display: table-cell;
+  font-size: 13px;
+}
+
+.c-breadCrumb__link {
+  margin-right: 8px;
+  color: #2f2f2f;
+}
+
+.c-breadCrumb__arrow {
+  margin-right: 8px;
+}
+
+.c-tabs {
+  margin-bottom: 25px;
+  display: table;
+  width: 100%;
+}
+.c-tabs__item {
+  display: table-cell;
+  width: 55%;
+  text-align: center;
+}
+.c-tabs__item:first-child {
+  border-right: 1px solid #000;
+}
+
+.c-pageNav {
+  width: 1000px;
+  margin: 0 auto 50px;
+  border-top: 1px solid #ddd;
+  border-bottom: 1px solid #ddd;
+}
+.c-pageNav__body {
+  padding: 15px 0;
+}
+
+.c-pageNav__item {
+  display: inline-block;
+  text-align: center;
+  width: 33%;
+  border-left: 1px solid #ddd;
+}
+.c-pageNav__item:first-child {
+  border-left: none;
+}
+.c-pageNav__item a {
+  width: 100%;
+  display: inline-block;
+  padding: 5px 0;
+}
+
+.c-pageTop {
+  width: 100%;
+  display: inline-block;
+  right: 10px;
+  bottom: 100px;
+}
+.c-pageTop__item {
+  width: 940px;
+  margin: 0 auto;
+  text-align: right;
+}
+
+.c-pageTop__text {
+  display: inline-block;
+  width: 81px;
+  height: 11px;
+  color: #000;
+  font-size: 12px;
+}
+
+/*doc
+---
+title: Footer
+name: Footer
+category: Components CSS
+---
+
+##フッター
+
+基本的なフッターのマークアップです。
+
+```html_example
+<div class="c-footer__bottom">
+	<div class="l-inner">
+		<p class="c-footer__bottom--body">
+			Copyright &copy; taisun0523 All rights reserved.
+		</p>
+	</div>
+</div>
+```
+*/
+.c-footer {
+  padding: 5px 10px;
+}
+.c-footer__bottom--body {
+  display: block;
+  padding: 15px 0;
+  display: inline-block;
+  background: #000;
+  width: 100%;
+  color: #fff;
+  font-size: 11px;
+  font-weight: lighter;
+  letter-spacing: 0.8px;
+  text-align: center;
+}
+
+.c-footer__private {
+  text-align: left;
+}
+
+.c-footer__copy {
+  text-align: right;
+}
+
+.c-footerNav {
+  text-align: center;
+  padding: 37px 0 0;
+}
+.c-footerNav__body {
+  overflow: hidden;
+  margin-left: 120px;
+}
+
+.c-footerNav__item {
+  display: inline-block;
+  margin-left: 30px;
+  padding-left: 30px;
+  border-left: 1px solid #000;
+  line-height: 0.8;
+}
+.c-footerNav__item a {
+  color: #333;
+  font-size: 12px;
+}
+.c-footerNav__item a:hover {
+  color: #aaa;
+}
+.c-footerNav__item:first-child {
+  margin-left: 0;
+  padding-left: 0;
+  border-left: none;
+}
+
+.c-company {
+  display: table-cell;
+  vertical-align: bottom;
+}
+.c-company__logo {
+  display: table-cell;
+  width: 50%;
+}
+
+.c-company__data {
+  display: table-cell;
+  width: 50%;
+  text-align: left;
+}
+.c-company__data span {
+  display: block;
+  font-size: 12px;
+  line-height: 1.5;
+}
+
+.c-fContact {
+  text-align: right;
+  display: table-cell;
+  width: 50%;
+  padding-right: 10px;
+  vertical-align: bottom;
+}
+.c-fContact li {
+  display: block;
+  line-height: 1.2;
+}
+.c-fContact__tel {
+  font-size: 20px;
+  font-weight: bold;
+}
+.c-fContact__tel span {
+  font-size: 12px;
+  margin-right: 5px;
+  font-weight: normal;
+}
+
+.is-fixed {
+  position: fixed !important;
+  top: 0;
+  left: 0;
+}
+
+.is-tabActive a {
+  color: #000 !important;
+}
+
+.is-ready {
+  background: #ddd;
+  width: 100%;
+  height: 500px;
+  display: inline-block;
+}
+
+.is-topHead {
+  position: absolute;
+}
+
+.is-current a {
+  border-bottom: 4px solid #434343 !important;
+}
+
+.is-show {
+  display: block !important;
+}
+
+.is-page {
+  font-weight: bold;
+}
+
+.is-contact {
+  padding-bottom: 72px;
+}
+
+.is-emphasis {
+  color: #f30c0c;
+}
+
+.is-emphasisLink {
+  color: #f30c0c;
+  text-decoration: underline;
+}
+
+.is-tabActive .c-tabs__btn--mens {
+  border-top: 8px solid #000 !important;
+  border-bottom: none !important;
+}
+.is-tabActive .c-tabs__btn--mens span {
+  background-position: 0px -156px;
+}
+.is-tabActive .c-tabs__btn--ladies {
+  border-top: 8px solid #000 !important;
+  border-bottom: none !important;
+}
+.is-tabActive .c-tabs__btn--ladies span {
+  background-position: -155px -108px;
+}
+
+.u-err {
+  color: red !important;
+}
+
+.u-mgb__s {
+  margin-bottom: 10px !important;
+}
+
+.u-mgb__m {
+  margin-bottom: 16px !important;
+}
+
+.u-mgb__l {
+  margin-bottom: 24px !important;
+}
+
+.u-mgb__ll {
+  margin-bottom: 32px !important;
+}
+
+.u-mgb__sl {
+  margin-bottom: 48px !important;
+}
+
+.u-mgb__xl {
+  margin-bottom: 72px !important;
+}
+
+.u-mgt__m {
+  margin-bottom: 16px !important;
+}
+
+.u-right {
+  text-align: right !important;
+}
+
+.u-center {
+  text-align: center !important;
+}
+
+.u-top {
+  vertical-align: top !important;
+}
+
+.u-img__max img {
+  width: 100% !important;
+}
+
+.u-btn__item2_2, .u-btn__item2_3 {
+  position: absolute;
+  width: 300px;
+}
+
+.u-btn__item2_2 {
+  bottom: 0;
+  left: 15px;
+}
+
+.u-btn__item2_3 {
+  bottom: 0;
+  right: 15px;
+}

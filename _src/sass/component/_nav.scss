@@ -1,0 +1,260 @@
+/*doc
+---
+title: Navigaation
+name: Navigaation
+category: Components CSS
+---
+
+ナビゲーションのマークアップです。
+
+##ヘッダー
+```html_example
+<header id="header" class="l-header">
+	<div class="l-inner g-rows">
+		<p class="c-logo g-col__4"><a href="/">ロゴ</a></p>
+		<nav class="c-subNav g-col__8">
+			<ul class="c-subNav__body">
+				<li class="c-subNav__item"><a href="xxx.html">LINK1</a></li><li class="c-subNav__item"><a href="xxx.html">LINK2</a></li><li class="c-subNav__item"><a href="xxx.html">LINK3</a></li>
+			</ul>
+		</nav>
+	</div>
+</header>
+```
+
+##グローバルナビゲーション
+
+基本的なグローバルナビゲーションのマークアップになります。
+
+```html_example
+<nav class="c-gloNav">
+	<ul class="c-gloNav__body">
+		<li class="c-gloNav__item"><a href="/"><span>Menu1</span></a></li><li class="c-gloNav__item is-currentMenu"><a href="/"><span>Menu2</span></a></li><li class="c-gloNav__item"><a href="/"><span>Menu3</span></a></li><li class="c-gloNav__item"><a href="/"><span>Menu4</span></a></li><li class="c-gloNav__item"><a href="/"><span>Menu5</span></a></li>
+	</ul>
+</nav>
+```
+
+##フッター
+
+```html_example
+<footer class="l-footer">
+	<nav class="c-footerNav">
+		<ul class="c-footerNav__body">
+			<li class="c-footerNav__item"><a href="/">Menu1</a></li>
+			<li class="c-footerNav__item"><a href="/">Menu2</a></li>
+			<li class="c-footerNav__item"><a href="/">Menu3</a></li>
+			<li class="c-footerNav__item"><a href="/">Menu4</a></li>
+			<li class="c-footerNav__item"><a href="#">Menu5</a></li>
+		</ul>
+	</nav>
+</footer>
+```
+
+##パンくずリスト
+
+パンくずリストです。
+
+```html_example
+<nav class="c-breadCrumb">
+	<ul class="c-breadCrumb__body">
+		<li class="c-breadCrumb__item"><a class="c-breadCrumb__link">パンくず１</a><span class="c-breadCrumb__arrow">></span></li>
+		<li class="c-breadCrumb__item"><a class="c-breadCrumb__link">パンくず２</a><span class="c-breadCrumb__arrow">></span></li>
+		<li class="c-breadCrumb__item"><a class="c-breadCrumb__link">パンくず３</a><span class="c-breadCrumb__arrow">></span></li>
+		<li class="c-breadCrumb__item is-page">パンくず4</li>
+	</ul>
+</nav>
+```
+
+##トップへ戻る
+
+トップへ戻るボタンです。
+
+```html_example
+<ul class="c-pageTop">
+	<li class="c-pageTop__item">
+		<a href="#" class="c-pageTop__text">トップへ戻る</a>
+	</li>
+</ul>
+
+```
+ */
+
+%gloNavItemStyle {
+	float: left;
+	font-size: 0;
+	background: url("../../img/dest/sprite.png") no-repeat;
+	margin-left: 20px;
+	a {
+		display: block;
+		height: 100%;
+		width: 100%;
+	}
+}
+
+%c-categoryStyle {
+	float: right;
+	height: 80px;
+	width: 80px;
+	position: absolute;
+	top: 0;
+	right: 0;
+}
+
+.c-{
+	@at-root {
+		#{&}logo {
+			vertical-align: top;
+			text-align: left;
+			a {
+				font-size: 40px; //画像を使用する場合は0px
+				display: block;
+				/* background-image: url(../img/common/logo.png); */
+				width: 322px;
+				height: 82px;
+			}
+		}
+		#{&}gloNav {
+			overflow: hidden;
+			margin-top: 9px;
+			@at-root {
+				#{&}__body {
+					display: table;
+ 					width: 100%;
+ 					a {
+						&:hover {
+							border-bottom: 4px solid #434343;
+						}
+					}
+				}
+				#{&}__item {
+							display: table-cell;
+							width: 20%;
+							&:hover {
+								color: #e2e2e2;
+							}
+						a {
+							display: inline-block;
+							text-align: center;
+							span {
+								display: block;
+								margin: 0 auto;
+							}
+						}
+						@at-root {
+							%current {
+								border-bottom: 3px solid #00ffff !important;
+								//background: url("../img/common/bg_gNav_active.png") !important;
+							}
+					}
+				}
+			}
+		}
+		#{&}subNav {
+			text-align: right;
+			@at-root {
+				#{&}__item{
+					display: inline-block;
+					margin-right: 16px;
+					a {
+						font-size: 14px;
+						display: block;
+						width: 100%;
+					}
+				}
+			}
+		}
+		#{&}breadCrumb {
+			display: table;
+			width: 100%;
+			padding: 24px 0 32px;
+			@at-root {
+				#{&}__body {
+					width: 100%;
+					margin: 0 auto;
+				}
+				#{&}__item {
+					display: table-cell;
+					font-size: 13px;
+				}
+				#{&}__link {
+					margin-right: 8px;
+					color: #2f2f2f;
+				}
+				#{&}__arrow {
+					margin-right: 8px;
+				}
+			}
+		}
+		#{&}tabs {
+			margin-bottom: 25px;
+			display: table;
+			width: 100%;
+			@at-root {
+				#{&}__item {
+					display: table-cell;
+					width: 55%;
+					text-align: center;
+					&:first-child {
+						border-right: 1px solid #000;
+					}
+				}
+
+				#{selector-append(&, "__btn")}{
+					@at-root {
+						%tabs {
+							display: block;
+							width: 100%;
+							padding: 10px 0;
+							border-top: 8px solid #cccccc;
+							border-bottom: 1px solid #000;
+						}
+					}
+				}
+			}
+		}
+		#{&}pageNav {
+			  width: 1000px;
+			  margin: 0 auto 50px;
+			  border-top: 1px solid #ddd;
+			  border-bottom: 1px solid #ddd;
+			  @at-root {
+			  	#{&}__body {
+			  		padding: 15px 0;
+			  	}
+			  	#{&}__item {
+			  		display: inline-block;
+					text-align: center;
+					width: 33%;
+					border-left: 1px solid #ddd;
+					&:first-child {
+						border-left: none;
+					}
+					a {
+						width: 100%;
+						display: inline-block;
+						padding: 5px 0;
+					}
+			  	}
+			  }
+		}
+		#{&}pageTop {
+			width: 100%;
+			display: inline-block;
+			right: 10px;
+			bottom: 100px;
+			@at-root {
+				#{&}__item {
+					width: 940px;
+					margin: 0 auto;
+					text-align: right;
+				}
+				#{&}__text {
+					display: inline-block;
+					width: 81px;
+					height: 11px;
+					color: #000;
+					font-size: 12px;
+				}
+			}
+		}
+	}
+}

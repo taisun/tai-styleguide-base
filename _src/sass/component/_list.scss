@@ -1,0 +1,182 @@
+/*doc
+---
+title: List
+name: List
+category: Components CSS
+---
+
+基本的なリストのマークアップです。
+
+##ナンバー付きリスト
+
+```html_example
+<ol class="c-listNumber">
+	<li class="c-listNumber__item">
+		<dl class="c-listNumber__body">
+			<dt class="c-listNumber__num">(1)</dt>
+			<dd class="c-listNumber__txt">テキストテキストテキストテキストテキストテキスト</dd>
+		</dl>
+	</li>
+	<li class="c-listNumber__item">
+		<dl class="c-listNumber__body">
+			<dt class="c-listNumber__num">(2)</dt>
+			<dd class="c-listNumber__txt">
+				<span>テキストテキストテキストテキストテキストテキストテキスト</span>
+				<ul>
+					<li>テキストテキストテキストテキストテキストテキストテキスト</li>
+					<li>テキストテキストテキストテキストテキストテキストテキスト</li>
+				</ul>
+			</dd>
+		</dl>
+	</li>
+	<li class="c-listNumber__item">
+		<dl class="c-listNumber__body">
+			<dt class="c-listNumber__num">(3)</dt>
+			<dd class="c-listNumber__txt">テキストテキストテキストテキストテキストテキストテキスト</dd>
+		</dl>
+	</li>
+	<li class="c-listNumber__item">
+		<dlv class="c-listNumber__body">
+			<dt class="c-listNumber__num">(4)</dt>
+			<dd>テキストテキストテキストテキストテキストテキストテキスト</dd>
+		</dl>
+	</li>
+	<li class="c-listNumber__item">
+		<dl class="c-listNumber__body">
+			<dt class="c-listNumber__num">(5)</dt>
+			<dd class="c-listNumber__txt">テキストテキストテキストテキストテキストテキストテキスト</dd>
+		</dl>
+	</li>
+	<li class="c-listNumber__item">
+		<dl class="c-listNumber__body">
+			<dt class="c-listNumber__num">(6)</dt>
+			<dd class="c-listNumber__txt">テキストテキストテキストテキストテキストテキストテキスト</dd>
+		</dl>
+	</li>
+</ol>
+```
+
+##サイトマップリスト
+
+```html_example
+	<ul class="c-siteMaplist">
+		<li class="c-siteMaplist__item"><a href="xxx.html">テキスト</a></li>
+		<li class="c-siteMaplist__item"><a href="xxx.html">テキスト</a></li>
+		<li class="c-siteMaplist__item"><a href="xxx.html">テキスト</a></li>
+		<li class="c-siteMaplist__item"><a href="xxx.html">テキストテキスト</a></li>
+		<li class="c-siteMaplist__item"><a href="xxx.html">テキスト</a></li>
+	</ul>
+```
+ */
+
+.c-listLink {
+	@at-root {
+		#{&}__item {
+			margin-bottom: 20px;
+			a {
+				color: #d86f19;
+				text-decoration: underline;
+			}
+		}
+	}
+}
+.c-listNumber {
+	@at-root {
+		#{&}__item {
+			  line-height: 1.6;
+		}
+		#{&}__body {
+			display: table;
+		}
+		%tables {
+			display: table-cell;
+		}
+		#{&}__num {
+			@extend %tables;
+			padding-right: 8px;
+		}
+		#{&}__txt {
+			@extend %tables;
+		}
+	}
+}
+.c- {
+	@at-root {
+		#{&}listNews {
+			$boreder: 1px solid #e0e0e0;
+			border-top: $boreder;
+			border-bottom: $boreder;
+			padding: 10px 10px 5px;
+			@at-root {
+				#{&}__item {
+					display: block;
+					width: 100%;
+					margin-bottom: 5px;
+				}
+				%innnerCont {
+					display: table-cell;
+				}
+				#{&}__data {
+					@extend %innnerCont;
+				}
+				#{&}__link {
+					@extend %innnerCont;
+					padding-left: 30px;
+					a {
+						color: #000;
+					}
+				}
+			}
+		}
+		#{&}labeList{
+			margin-bottom: 10px;
+			@at-root {
+				#{&}__item{
+					display: inline-block;
+				}
+			}
+		}
+		#{&}elementList {
+			@at-root {
+				#{&}__item {
+					position: relative;
+					margin-bottom: 15px;
+					&:hover {
+						dl {
+							display: block;
+						}
+					}
+
+				}
+			}
+		}
+		#{&}tableList {
+			  display: table;
+			  @at-root {
+			  	#{&}__item {
+					display: inline-block;
+					width: 50%;
+					vertical-align: text-top;
+					margin-bottom: 15px;
+				}
+			  }
+		}
+		#{&}siteMaplist {
+			width: 700px;
+  			margin: 0 auto;
+			@at-root {
+				#{&}__item {
+					display: inline-block;
+					width: 48%;
+					margin-bottom: 35px;
+					border-left: 8px solid #95c276;
+					a {
+						display: inline-block;
+						width: 180px;
+						margin-left: 20px;
+					}
+				}
+			}
+		}
+	}
+}

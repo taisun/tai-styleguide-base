@@ -1,0 +1,139 @@
+/*doc
+---
+title: Config（設定ファイル）
+name: Config（設定ファイル）
+category: Config
+---
+
+#設定ファイル
+
+各種設定です。  
+変数で管理しています。
+
+##色
+
+**Base Colors**
+
+色                                                                  |変数名         |値     |説明            |
+------------------------------------------------------------------- | ------------ | ----- | ------------- |
+<div style="background-color:#a2bb60;height:30px;width:30px;"></div>|`$color__main`  |#a2bb60|メインの色です　　|
+<div style="background-color:#eb6d58;height:30px;width:30px;"></div>|`$color__second`|#eb6d58|サブの色です　　　|
+<div style="background-color:#94c1c8;height:30px;width:30px;"></div>|`$color__accent`|#94c1c8|アクセントの色です|
+<div style="background-color:#0D699C;height:30px;width:30px;"></div>|`$color__sub`   |#0D699C|サブ色です　　　  |
+  
+<br>
+**No Colors**  
+
+色                                                                  |変数名              |値     |説明            |
+------------------------------------------------------------------- | ----------------- | ----- | ------------- |
+<div style="background-color:#515554;height:30px;width:30px;"></div>|`$color__black`      |#515554|黒です　　|
+<div style="background-color:#b0b3b3;height:30px;width:30px;"></div>|`$color__grey`       |#b0b3b3|グレイです　　　|
+<div style="background-color:#cfd2d2;height:30px;width:30px;"></div>|`$color__grey--light|#cfd2d2|明るいグレイです|
+<div style="background-color:#cfd2d2;height:30px;width:30px;"></div>|`$color__grey--dark` |#cfd2d2|暗いグレイです  |
+<div style="background-color:#f4f4f4;height:30px;width:30px;"></div>|`$color__offwhite`   |#f4f4f4|オフホワイトです|
+<div style="background-color:#ffffff;height:30px;width:30px;"></div>|`$color__white`      |#ffffff|白です　　　  |
+<br>
+**Buton Colors**
+
+色                                                                  |変数名              |値     |説明            |
+------------------------------------------------------------------- | ----------------- | ----- | ------------- |
+<div style="background-color:#F0F0F0;height:30px;width:30px;"></div>|`$btn-color-default` |#F0F0F0|デフォルトボタン色です|
+<div style="background-color:#337ab7;height:30px;width:30px;"></div>|`$btn-color-primary` |#337ab7|主要のボタン色です　　|
+<div style="background-color:#5CB85F;height:30px;width:30px;"></div>|`$btn-color-success` |#5CB85F|実行するボタン色です|
+<div style="background-color:#5bc0de;height:30px;width:30px;"></div>|`$btn-color-info`    |#5bc0de|お知らせ等のボタン色です|
+<div style="background-color:#f0ad4e;height:30px;width:30px;"></div>|`$btn-color-denger`  |#f0ad4e|確認のボタン色をです|
+<div style="background-color:#d9534f;height:30px;width:30px;"></div>|`$btn-color-warning` |#d9534f|エラーのボタン色です|
+<br>
+
+**Table Colors**
+
+色                                                                  |変数名                |値     |説明               |
+------------------------------------------------------------------- | ------------------ | ----- | ---------------- |
+<div style="background-color:#bbbbbb;height:30px;width:30px;"></div>|`$table-color-border` |#bbbbbb|tableの線の色です|
+<div style="background-color:#e4e4e4;height:30px;width:30px;"></div>|`$table-color-heading`|#e4e4e4|th色です　|
+<div style="background-color:#ffffff;height:30px;width:30px;"></div>|`$table-color-content`|#ffffff|tdの色です|
+<br>
+
+
+##サイズ
+
+**Braek Point**
+
+変数名                                                                |値                |説明     |
+------------------------------------------------------------------- | ------------------ | ----- |
+`$breakPoint__pc-min` |640|PC表示Min値|
+`$breakPoint__pc-max` |960|PC表示Max値|
+`$breakPoint__tab-min`|640|Tablet表示Min値|
+`$breakPoint__tab-max`|700|Tablet表示Max値|
+`$breakPoint__sp-min` |320|SP表示Min値|
+$breakPoint__sp-max`  |640|SP表示Max値|
+<br>
+**Margin**
+
+変数名                                                                |値                
+------------------------------------------------------------------- | ------------------
+`$mgn__xs` |5|
+`$mgn__sm` |10|
+`$mgn__md` |15|
+`$mgn__n`  |20|
+`$mgn__lg` |30|
+`$mgn__xl` |40|
+`$mgn__xxl`|50|
+*/
+
+// colors 
+$color__black: #2e2e2e;
+$color__grey: #b0b3b3;
+$color__grey--light: #f0f4f4;
+$color__grey--dark: #cfd2d2;
+$color__offwhite: #f4f4f4;
+$color__white: #fff;
+
+$color__main: #fff;
+$color__second: #1c7ab0;
+$color__accent: #95c276;
+$color__sub: #0D699C;
+
+$color__error: red;
+$color__warning: yellow;
+$color__info: blue;
+$color__success: green;
+
+//button colors
+$btn-color-default: #333;
+$btn-color-primary: #337ab7;
+$btn-color-success: #5CB85F;
+$btn-color-info: #5bc0de;
+$btn-color-denger: #f0ad4e;
+$btn-color-warning: #d9534f;
+
+//table colors
+$table-color-border: #bbb;
+$table-color-heading: #e4e4e4;
+$table-color-content: #fff;
+
+//break point
+$breakPoint__pc-min: 640;
+$breakPoint__pc-max: 960;
+
+$breakPoint__tab-min: 320;
+$breakPoint__tab-max: 640;
+
+$breakPoint__sp-min: 320;
+$breakPoint__sp-max: 640;
+
+//font
+$font-size: 14px;
+$font-lineHeight: 1.5;
+
+//margin base
+$mgn__xs: 4;
+$mgn__sm: 8;
+$mgn__md: 16;
+$mgn__n: 24;
+$mgn__lg: 32;
+$mgn__xl: 40;
+$mgn__xxl: 50;
+
+$nav-number: 6;
+$nav-sub-number: 3;

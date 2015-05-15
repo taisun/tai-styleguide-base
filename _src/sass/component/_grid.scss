@@ -1,0 +1,14 @@
+%cols {
+	display: table-cell;
+}
+.g- {
+	@at-root {
+		#{&}rows {
+			display: table;
+			clear: both;
+			width: 100%;
+		}
+		@include grid(12);
+		@include gridTbl(12);
+	}
+}

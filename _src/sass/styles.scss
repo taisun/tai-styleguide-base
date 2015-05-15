@@ -1,0 +1,195 @@
+/*doc
+---
+title: Coding Rules
+name: CodingRules
+category: Coding Rules
+---
+
+本サイトのマークアップの基本ルールです。
+<br>
+<br>
+
+##マークアップ<br>
+本サイトは以下のバージョンのHTMLで記述しています。
+<br>
+<table style="width:100%;">
+	<tr>
+		<th style="background: #ececec;width: 30%;">Version</th>
+		<td>XTML 1.0</td>
+	</tr>
+	<tr>
+		<th style="background: #ececec;width: 30%;">Charset</th>
+		<td>Shift_JIS</td>
+	</tr>
+</table>
+<br>
+<br>
+本サイトは`head`と`body`をファイルを以下の用に分けて制作していきます。
+<br>
+<br>
+<table style="width:100%;">
+	<thead>
+		<tr>
+			<th style="background: #ececec;"">Tags</th>
+			<th style="background: #ececec;">ファイル名</th>
+			<th style="background: #ececec;">内容</th>
+		</tr>
+	</thead>
+	<tr>
+		<td>head</td>
+		<td>xxx_head.html</td>
+		<td>headのファイルです。headタグは記述しません。</td>
+	</tr>
+	<tr>
+		<td>body</td>
+		<td>xxx.html</td>
+		<td>bodyのファイルです。bodyタグは記述しません。</td>
+	</tr>
+</table>
+<br>
+###head
+以下のような記述をします。
+`xxx`のところは任意で記述してください。
+
+```html_example
+<meta http-equiv="Content-Type" content="text/html; charset=Shift_JIS" />
+
+<meta name="author" content="xxxx"/>
+<meta name="copyright" content="xxxx"/>
+<meta name="keywords" content="HARE,GRIND,COLLECTION,ストリート,ファッション,アパレル,カジュアル,スケーター,スケート,SK8,コレクション,point,styling,スタイリング,スタイリスト,アイテム" />
+<meta name="description" content="xxxxxxxxx" />
+<title>xxxxx</title>
+
+<meta http-equiv="Content-Style-Type" content="text/css"/>
+<meta http-equiv="Content-Script-Type" content="text/javascript"/>
+<link rel="stylesheet" type="text/css" media="all" href="/xxx/xxxx/css/xxx.css" />
+
+<meta property="og:locale" content="ja_JP" />
+<meta property="og:type" content="website" />
+<meta property="og:title" content="xxxxxxx" />
+<meta property="og:site_name" content="xxxxxxx" />
+<meta property="og:description" content="xxxxxx" />
+<meta property="og:url" content="xxxxxx" />
+```
+<br>
+
+###body
+基本的に以下の用な構造で制作します。
+<br>
+
+```html_example
+<div class="warpper">
+	<div class="header">
+		...省略
+	</div>
+	<div class="main">
+		...省略
+	</div>
+	<div class="footer">
+		...省略
+	</div>
+</div>
+```
+
+各パーツのマークアップは[Components]("components_css.html")を参照シてください。
+<br>
+<br>
+##Layout
+レイアウトについて
+本サイトのレイアウトは`グリッドシステム`採用しています。
+12カラムのレイアウト構造です。
+
+詳しくは[BaseStyle]("base_css")を参照してください。
+<br>
+<br>
+##外部ファイル読み込み
+ファイルの読み込みについて説明します。
+`Javascript`や`CSS`の外部ファイルのパスですが
+基本的にルート相対で記述します。
+
+```html_example
+<a href="/xxx/xxx/xxx.css">リンク</a>
+```
+<br>
+###CSSファイル
+<br>
+CSSファイルは基本的に一つにまとめ`minify`化して読み込みます。
+CSSファイルは上から下に読むので上からセレクタ強度が弱い順に記述します。
+例外としてプラグイン等のデフォルトCSSは本サイトオリジナルのCSSの最後に記述してください。
+詳しく[CSS Rules](css.html)を参照してください。
+
+CSSファイルはhead内で読み込みます。
+<br>
+<br>
+
+###Javascriptファイル
+<br>
+Javascript（以下はjs）ファイルもCSS同様一つにまとめ`minfiy`化して読み込みます。
+本サイトは`jQuery`を採用しています。
+`jQuery`は最初に読み込む用してください。
+以下の様な順番でjsファイルを読み込み一つにまとめます。
+<br>
+
+```html_example
+jQuery > load時実行JS > プラグイン系JS 　> イベントハンドラ制御系ｊS
+```
+
+jsファイルは基本的に`</body>`手前で読み込みます。
+
+<br>
+
+##禁止事項
+以下の内容を禁止とシます。
+
+* ・IDセレクタは基本使用しない。
+* ・レイアウト目的の`<br />`は使用しない。
+* ・レイアウト目的で全角＆半角スペースを使用しない。
+* ・レイアウト目的で`&nbsp;`使用しない。
+
+※`&nbsp;`は単位の前のみ使用する(半角スペースではなくNo Break Spaceという意味の為)
+
+<br>
+*/
+
+//文字コード
+@charset "utf-8";
+
+//1.Setting
+
+@import "setting/config";
+
+//2.Tools
+
+@import "tools/function";
+@import "tools/mixin";
+
+//3.Generic
+
+@import "generic/reset";
+
+//4.Base
+
+@import "base/base";
+
+//5.Objects
+
+@import "objects/base";
+@import "objects/other";
+@import "objects/project";
+
+//6.Components
+
+@import "component/base";
+@import "component/heading";
+@import "component/button";
+@import "component/table";
+@import "component/grid";
+@import "component/list";
+@import "component/nav";
+@import "component/footer";
+
+//7.Trumps
+
+@import "trump/state";
+@import "trump/utility";
+
